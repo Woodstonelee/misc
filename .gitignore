@@ -1,0 +1,7 @@
+# this is a comment
+# file list that git will ignore to track
+*.log
+tmp*
+temp*
+misc-inputs/
+misc-outputs/
