@@ -1,0 +1,27 @@
+[pfilter]
+;Pulse Filter batch runs for DWEL basic reprocessing of CA data of 2013
+n_case=12
+Run_Desc='DWEL processing of BU CA data of 2013 - pulse filtering'
+log_file='/projectnb/echidna/lidar/DWEL_Processing/CA2013June/CA2013_Site305/DWEL_CA305_2013_pfilter.log'
+;
+datafile=[ $
+'/projectnb/echidna/lidar/DWEL_Processing/CA2013June/CA2013_Site305/June14_01_305_NE/basefixtest/June14_01_305_NE_1064_Cube_NadirCorrect_Aligned_nu_basefix_satfix.img', $
+'/projectnb/echidna/lidar/DWEL_Processing/CA2013June/CA2013_Site305/June14_01_305_NE/basefixtest/June14_01_305_NE_1548_Cube_NadirCorrect_Aligned_nu_basefix_satfix.img', $
+]
+;
+ancfile=[ $
+'/projectnb/echidna/lidar/DWEL_Processing/CA2013June/CA2013_Site305/June14_01_305_NE/basefixtest/June14_01_305_NE_1064_Cube_NadirCorrect_Aligned_nu_basefix_satfix_ancillary.img', $
+'/projectnb/echidna/lidar/DWEL_Processing/CA2013June/CA2013_Site305/June14_01_305_NE/basefixtest/June14_01_305_NE_1548_Cube_NadirCorrect_Aligned_nu_basefix_satfix_ancillary.img', $
+]
+;
+outfile=[ $
+'/projectnb/echidna/lidar/DWEL_Processing/CA2013June/CA2013_Site305/June14_01_305_NE/basefixtest/June14_01_305_NE_1064_Cube_NadirCorrect_Aligned_nu_basefix_satfix_pfilter_b32r04.img', $
+'/projectnb/echidna/lidar/DWEL_Processing/CA2013June/CA2013_Site305/June14_01_305_NE/basefixtest/June14_01_305_NE_1548_Cube_NadirCorrect_Aligned_nu_basefix_satfix_pfilter_b32r04.img', $
+]
+;
+b_thresh=32
+r_thresh=0.4
+;
+save_br=0
+Exit_IDL=0
+delete_input=0

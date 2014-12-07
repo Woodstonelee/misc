@@ -1,0 +1,37 @@
+[point_cloud]
+;point cloud from at projected data for DWEL basic reprocessing of CA data of 2013
+n_case=8
+Run_Desc='DWEL processing of BU CA data of 2013 - Point Cloud'
+log_file='/projectnb/echidna/lidar/DWEL_Processing/CA2013June/CA2013_Site305/DWEL_Kara5_2013_point_cld.log'
+;
+datafile=[ $
+'/projectnb/echidna/lidar/DWEL_Processing/CA2013June/CA2013_Site305/June14_01_305_NE/June14_01_305_NE_1064_Cube_NadirCorrect_Aligned_nu_basefix_satfix_pfilter_b32r04_at_project.img', $
+'/projectnb/echidna/lidar/DWEL_Processing/CA2013June/CA2013_Site305/June14_01_305_NE/June14_01_305_NE_1548_Cube_NadirCorrect_Aligned_nu_basefix_satfix_pfilter_b32r04_at_project.img', $
+'/projectnb/echidna/lidar/DWEL_Processing/CA2013June/CA2013_Site305/June14_02_305_NW/June14_02_305_NW_1064_Cube_NadirCorrect_Aligned_nu_basefix_satfix_pfilter_b32r04_at_project.img', $
+'/projectnb/echidna/lidar/DWEL_Processing/CA2013June/CA2013_Site305/June14_02_305_NW/June14_02_305_NW_1548_Cube_NadirCorrect_Aligned_nu_basefix_satfix_pfilter_b32r04_at_project.img', $
+'/projectnb/echidna/lidar/DWEL_Processing/CA2013June/CA2013_Site305/June12_01_305_C/June12_01_305_C_1064_Cube_NadirCorrect_Aligned_nu_basefix_satfix_pfilter_b32r04_at_project.img', $
+'/projectnb/echidna/lidar/DWEL_Processing/CA2013June/CA2013_Site305/June12_01_305_C/June12_01_305_C_1548_Cube_NadirCorrect_Aligned_nu_basefix_satfix_pfilter_b32r04_at_project.img', $
+'/projectnb/echidna/lidar/DWEL_Processing/CA2013June/CA2013_Site305/June14_03_305_SE/June14_03_305_SE_1064_Cube_NadirCorrect_Aligned_nu_basefix_satfix_pfilter_b32r04_at_project.img', $
+'/projectnb/echidna/lidar/DWEL_Processing/CA2013June/CA2013_Site305/June14_03_305_SE/June14_03_305_SE_1548_Cube_NadirCorrect_Aligned_nu_basefix_satfix_pfilter_b32r04_at_project.img' $
+]
+;
+outfile=[ $
+'/projectnb/echidna/lidar/DWEL_Processing/CA2013June/CA2013_Site305/June14_01_305_NE/June14_01_305_NE_1064_Cube_NadirCorrect_Aligned_nu_basefix_satfix_pfilter_b32r04_at_project_ptcl.txt', $
+'/projectnb/echidna/lidar/DWEL_Processing/CA2013June/CA2013_Site305/June14_01_305_NE/June14_01_305_NE_1548_Cube_NadirCorrect_Aligned_nu_basefix_satfix_pfilter_b32r04_at_project_ptcl.txt', $
+'/projectnb/echidna/lidar/DWEL_Processing/CA2013June/CA2013_Site305/June14_02_305_NW/June14_02_305_NW_1064_Cube_NadirCorrect_Aligned_nu_basefix_satfix_pfilter_b32r04_at_project_ptcl.txt', $
+'/projectnb/echidna/lidar/DWEL_Processing/CA2013June/CA2013_Site305/June14_02_305_NW/June14_02_305_NW_1548_Cube_NadirCorrect_Aligned_nu_basefix_satfix_pfilter_b32r04_at_project_ptcl.txt', $
+'/projectnb/echidna/lidar/DWEL_Processing/CA2013June/CA2013_Site305/June12_01_305_C/June12_01_305_C_1064_Cube_NadirCorrect_Aligned_nu_basefix_satfix_pfilter_b32r04_at_project_ptcl.txt', $
+'/projectnb/echidna/lidar/DWEL_Processing/CA2013June/CA2013_Site305/June12_01_305_C/June12_01_305_C_1548_Cube_NadirCorrect_Aligned_nu_basefix_satfix_pfilter_b32r04_at_project_ptcl.txt', $
+'/projectnb/echidna/lidar/DWEL_Processing/CA2013June/CA2013_Site305/June14_03_305_SE/June14_03_305_SE_1064_Cube_NadirCorrect_Aligned_nu_basefix_satfix_pfilter_b32r04_at_project_ptcl.txt', $
+'/projectnb/echidna/lidar/DWEL_Processing/CA2013June/CA2013_Site305/June14_03_305_SE/June14_03_305_SE_1548_Cube_NadirCorrect_Aligned_nu_basefix_satfix_pfilter_b32r04_at_project_ptcl.txt' $
+]
+;
+Calib=[ $
+0, 0, 0, 0, 0, 0, 0, 0 $
+]
+;
+evi_az_n=[ $
+0, 0, 0, 0, 0, 0, 0, 0 $
+]
+;
+Exit_IDL=0

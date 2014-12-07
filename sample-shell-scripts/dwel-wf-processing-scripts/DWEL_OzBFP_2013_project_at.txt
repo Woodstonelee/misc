@@ -1,0 +1,30 @@
+[project_at]
+;project_at batch runs for DWEL basic reprocessing of CA data of 2013
+n_case=2
+Run_Desc='DWEL CA 2013 data processing - AT projection'
+log_file='/projectnb/echidna/lidar/DWEL_Processing/CA2013June/CA2013_Site305/DWEL_CA305_2013_project_at.log'
+;
+image=[ $
+'/projectnb/echidna/lidar/DWEL_Processing/CA2013June/CA2013_Site305/June14_01_305_NE/basefixtest/June14_01_305_NE_1064_Cube_NadirCorrect_Aligned_nu_basefix_satfix_pfilter_b32r04.img', $
+'/projectnb/echidna/lidar/DWEL_Processing/CA2013June/CA2013_Site305/June14_01_305_NE/basefixtest/June14_01_305_NE_1548_Cube_NadirCorrect_Aligned_nu_basefix_satfix_pfilter_b32r04.img', $
+]
+;
+anc_name=[ $
+'/projectnb/echidna/lidar/DWEL_Processing/CA2013June/CA2013_Site305/June14_01_305_NE/basefixtest/June14_01_305_NE_1064_Cube_NadirCorrect_Aligned_nu_basefix_satfix_ancillary.img', $
+'/projectnb/echidna/lidar/DWEL_Processing/CA2013June/CA2013_Site305/June14_01_305_NE/basefixtest/June14_01_305_NE_1548_Cube_NadirCorrect_Aligned_nu_basefix_satfix_ancillary.img', $
+]
+;
+outfile=[ $
+'/projectnb/echidna/lidar/DWEL_Processing/CA2013June/CA2013_Site305/June14_01_305_NE/basefixtest/June14_01_305_NE_1064_Cube_NadirCorrect_Aligned_nu_basefix_satfix_pfilter_b32r04_4mrad_at_project.img', $
+'/projectnb/echidna/lidar/DWEL_Processing/CA2013June/CA2013_Site305/June14_01_305_NE/basefixtest/June14_01_305_NE_1548_Cube_NadirCorrect_Aligned_nu_basefix_satfix_pfilter_b32r04_4mrad_at_project.img', $
+]
+;
+output_resolution=[ $
+4.0, 4.0]
+Max_Zenith_Angle=[ $
+180.0, 180.0]
+overlap=[ $
+1.0, 1.0]
+;
+Exit_IDL=0
+delete_input=0

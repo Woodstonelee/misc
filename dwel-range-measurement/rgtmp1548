@@ -1,0 +1,125 @@
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2013 The MathWorks, Inc.
+                    R2013a (8.1.0.604) 64-bit (glnxa64)
+                             February 15, 2013
+
+ 
+To get started, type one of these: helpwin, helpdesk, or demo.
+For product information, visit www.mathworks.com.
+ 
+>> dwel_range_accuracy_nsf_no_wire 
+
+addpath('/usr3/graduate/zhanli86/usr/share/emacs/site-lisp/matlab-emacs/toolbox','-begin'); rehash; emacsinit('emacsclient -n');
+tzero-corrected range: 3.246 cm
+
+addpath('/usr3/graduate/zhanli86/usr/share/emacs/site-lisp/matlab-emacs/toolbox','-begin'); rehash; emacsinit('emacsclient -n');
+tzero-corrected range: 2.523 cm
+>> addpath('/usr3/graduate/zhanli86/usr/share/emacs/site-lisp/matlab-emacs/toolbox','-begin'); rehash; emacsinit('emacsclient -n');
+>> std(wirerg(:, 3))
+
+ans =
+
+    0.0252
+
+>> stats_mat1
+
+stats_mat1 =
+
+  394.0000  113.0000    6.7960    7.0870    6.9626    0.0489
+  395.0000  113.0000    6.8280    7.0600    6.9613    0.0434
+  396.0000  113.0000    6.8180    7.0830    6.9637    0.0528
+  397.0000  113.0000    6.8430    7.0610    6.9565    0.0445
+  398.0000  113.0000    6.8310    7.0730    6.9488    0.0408
+  399.0000  113.0000    6.7920    7.0640    6.9562    0.0464
+  400.0000  113.0000    6.8360    7.0450    6.9517    0.0427
+  401.0000  113.0000    6.7800    7.0290    6.9467    0.0453
+
+>> stats_mat2
+
+stats_mat2 =
+
+  394.0000  111.0000    6.8400    7.0350    6.9618    0.0394
+  395.0000  111.0000    6.8480    7.0620    6.9633    0.0425
+  396.0000  111.0000    6.8340    7.0840    6.9569    0.0542
+  397.0000  111.0000    6.8400    7.0710    6.9509    0.0469
+  398.0000  111.0000    6.8450    7.0350    6.9500    0.0440
+  399.0000  111.0000    6.8440    7.0480    6.9529    0.0413
+  400.0000  111.0000    6.8480    7.0360    6.9524    0.0366
+  401.0000  111.0000    6.8200    7.0220    6.9456    0.0396
+
+>> bs_stats_mat1
+
+bs_stats_mat1 =
+
+   1.0e+04 *
+
+    0.0394    2.0000    0.0000    0.0000
+    0.0395    2.0000    0.0000    0.0000
+    0.0396    2.0000    0.0000    0.0000
+    0.0397    2.0000    0.0000    0.0000
+    0.0398    2.0000    0.0000    0.0000
+    0.0399    2.0000    0.0000    0.0000
+    0.0400    2.0000    0.0000    0.0000
+    0.0401    2.0000    0.0000    0.0000
+
+>> bs_stats_mat1(:, 3:4)
+
+ans =
+
+    0.0485    0.0038
+    0.0431    0.0030
+    0.0525    0.0035
+    0.0442    0.0028
+    0.0405    0.0033
+    0.0460    0.0035
+    0.0425    0.0027
+    0.0449    0.0041
+
+>> bs_stats_mat2(:, 3:4)
+
+ans =
+
+    0.0391    0.0025
+    0.0422    0.0029
+    0.0538    0.0034
+    0.0466    0.0029
+    0.0438    0.0026
+    0.0410    0.0027
+    0.0363    0.0024
+    0.0393    0.0029
+
+>> 
+>> mean([bs_stats_mat1(:, 3); bs_stats_mat2(:, 3)])
+
+ans =
+
+    0.0440
+
+>> mean([bs_stats_mat1(:, 3); bs_stats_mat2(:, 3)])*100
+
+ans =
+
+    4.4016
+
+>> (npos1+npos2)/((size(stats_mat1, 1)+size(stats_mat2, 1))*nsections)
+
+ans =
+
+     1
+
+>> std(wirerg(:, 3))
+
+ans =
+
+    0.0252
+
+>> std(wirerg(:, 3))*100
+
+ans =
+
+    2.5226
+
+>> exit
+
+M-Shell finished
