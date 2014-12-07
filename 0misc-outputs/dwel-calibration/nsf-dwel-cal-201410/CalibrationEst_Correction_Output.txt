@@ -1,0 +1,56 @@
+Fitting to EVI model, four parameters (C_0, b, C_k, C_b), NSF stationary scan 20140812:
+Method                = moncar
+Statistic             = chi2datavar
+Initial fit statistic = 181310
+Final fit statistic   = 13440.8 at function evaluation 6643
+Data points           = 78
+Degrees of freedom    = 74
+Probability [Q-value] = 0
+Reduced statistic     = 181.633
+Change in statistic   = 167869
+   EVI.amplitude   12600.8     
+   EVI.b          1.33866     
+   EVI.Ck         29.9191     
+   EVI.Cb         10.6359     
+Fitting to alternate EVI model, three parameters (C_0, C_k, C_b), NSF stationary scan 20140812:
+Method                = moncar
+Statistic             = chi2datavar
+Initial fit statistic = 181310
+Final fit statistic   = 24945.1 at function evaluation 2518
+Data points           = 78
+Degrees of freedom    = 75
+Probability [Q-value] = 0
+Reduced statistic     = 332.601
+Change in statistic   = 156365
+   EVI_alt.amplitude   82012.2     
+   EVI_alt.Ck     127.938     
+   EVI_alt.Cb     35.129      
+Fitting to DWEL model, four parameters (C_0, C_1, C_2_C_3), NSF stationary scan 20140812:
+Method                = moncar
+Statistic             = chi2datavar
+Initial fit statistic = 193831
+Final fit statistic   = 24945.6 at function evaluation 2014
+Data points           = 78
+Degrees of freedom    = 74
+Probability [Q-value] = 0
+Reduced statistic     = 337.102
+Change in statistic   = 168885
+   DWEL.C0        81584.4     
+   DWEL.C1        1.61304e+15 
+   DWEL.C2        1.43053e+14 
+   DWEL.C3        35.2918     
+Fitting to alternate DWEL model, five parameters (C_0, C_1, C_2, C_3, b), NSF stationary scan 20140812:
+Method                = moncar
+Statistic             = chi2datavar
+Initial fit statistic = 193831
+Final fit statistic   = 13440.8 at function evaluation 8084
+Data points           = 78
+Degrees of freedom    = 73
+Probability [Q-value] = 0
+Reduced statistic     = 184.121
+Change in statistic   = 180390
+   DWEL_alt.C0    12600.8     
+   DWEL_alt.C1    5.96482e+15 
+   DWEL_alt.C2    1.09049e+15 
+   DWEL_alt.C3    10.6359     
+   DWEL_alt.b     1.33866     
