@@ -3,5 +3,9 @@
 *.log
 tmp*
 temp*
-*misc-inputs/
-*misc-outputs/
+*misc-inputs*/
+*misc-outputs*/
+*.e*
+*.o*
+*.pe*
+*.po*
