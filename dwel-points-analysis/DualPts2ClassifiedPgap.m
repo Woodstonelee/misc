@@ -4,8 +4,10 @@ clear;
 
 % ******************************************************************************
 % Arguments for inputs
-nirptsfile = '/projectnb/echidna/lidar/DWEL_Processing/HF2014/Hardwood20140919/HFHD_20140919_C/HFHD_20140919_C_1064_cube_bsfix_pxc_update_atp2_sdfac2_sievefac10_ptcl_points.txt';
-swirptsfile = '/projectnb/echidna/lidar/DWEL_Processing/HF2014/Hardwood20140919/HFHD_20140919_C/HFHD_20140919_C_1548_cube_bsfix_pxc_update_atp2_sdfac2_sievefac10_ptcl_points.txt';
+% nirptsfile = '/projectnb/echidna/lidar/DWEL_Processing/HF2014/Hardwood20140919/HFHD_20140919_C/HFHD_20140919_C_1064_cube_bsfix_pxc_update_atp2_sdfac2_sievefac10_ptcl_points.txt';
+% swirptsfile = '/projectnb/echidna/lidar/DWEL_Processing/HF2014/Hardwood20140919/HFHD_20140919_C/HFHD_20140919_C_1548_cube_bsfix_pxc_update_atp2_sdfac2_sievefac10_ptcl_points.txt';
+nirptsfile = '/home/zhanli/Workspace/data/dwel-processing/hfhd20140919/hfhd20140919-ptcl-apprefl-20141211/HFHD_20140919_C_1064_cube_bsfix_pxc_update_atp2_sdfac2_sievefac10_ptcl_points.txt';
+swirptsfile = '/home/zhanli/Workspace/data/dwel-processing/hfhd20140919/hfhd20140919-ptcl-apprefl-20141211/HFHD_20140919_C_1548_cube_bsfix_pxc_update_atp2_sdfac2_sievefac10_ptcl_points.txt';
 
 scanres = 2.0e-3/pi*180; % deg
 hbinsize = 0.5; % meter
@@ -65,10 +67,11 @@ linestr = fgetl(infid);
 fprintf(fid, '%s\n', linestr);
 fclose(infid);
 fprintf(fid, ['X,Y,Z,NDI,d_I_nir,d_I_swir,Return_Number,Number_of_Returns,' ...
-              'range_nir_minus_swir,theta,phi,Sample,Line,I_nir,FWHM_nir,I_swir,FWHM_swir\n']);
+              'range_mean, range_nir_minus_swir,theta,phi,Sample,Line,I_nir,FWHM_nir,I_swir,FWHM_swir\n']);
 cmpts = [pts_mean, pts_ndi, ...
                     nirpts(nirptscmind,4), swirpts(swirptscmind, 4), ...
-                    nirpts(nirptscmind,5:6), nirpts(nirptscmind,9)- ...
+                    nirpts(nirptscmind,5:6), (nirpts(nirptscmind,9)+ ...
+                    swirpts(swirptscmind,9))/2.0, nirpts(nirptscmind,9)- ...
                     swirpts(swirptscmind,9), (nirpts(nirptscmind, 10:11)+ ...
                                               swirpts(swirptscmind, 10:11))/2, ...
                     nirpts(nirptscmind, 13:14), nirpts(nirptscmind, 16:17), ...
@@ -77,12 +80,69 @@ fprintf(fid, [repmat('%.3f,',1,6), repmat('%d,',1,2), repmat('%.3f,',1,3), ...
               repmat('%d,',1,2),repmat('%d,',1,4),'\b\n'], cmpts');
 fclose(fid);
 
+cmpts_sample=13;
+cmpts_line=14;
+cmpts_inir = 15;
+cmpts_wnir = 16;
+cmpts_iswir = 17;
+cmpts_wswir = 18;
+cmpts_r = 9;
 % calculate Pgap from apparent reflectance for each point/scattering
 % event. Pgap is the gap probability from the instrument to the point. 
-sampleind = unique(nirpts(nirptscmind, 13));
-lineind = unique(nirpts(nirptscmind, 14));
+% two columns: [pgap_nir, pgap_swir] for each point
+pgap_raw = ones(size(cmpts, 1), 2); 
+sampleind = unique(cmpts(:, cmpts_sample));
+lineind = unique(cmpts(:, cmpts_line));
+multihitnum = 0;
 for l=1:length(lineind)
-    for 
+    for s=1:length(sampleind)
+        tmpflag = cmpts(:,cmpts_sample) == sampleind(s) & cmpts(:,cmpts_line) ...
+                  == lineind(l);
+        nhits = sum(tmpflag);
+        if nhits == 0 
+            continue;
+        end
+        tmpcmpts = cmpts(tmpflag,:);
+        if nhits == 1
+            tmp = 1 - tmpcmpts(cmpts_inir)*tmpcmpts(cmpts_wnir)/pulse_fwhm_nir;
+            if tmp < 0 
+                tmp = 0
+            end
+            if tmp > 1
+                tmp = 1
+            end
+            pgap_raw(tmpflag, 1) = tmp;
+            tmp = 1 - tmpcmpts(cmpts_iswir)*tmpcmpts(cmpts_wswir)/pulse_fwhm_swir;
+            if tmp < 0 
+                tmp = 0
+            end
+            if tmp > 1
+                tmp = 1
+            end
+            pgap_raw(tmpflag, 2) = tmp;
+
+        end
+        if nhits > 1
+            multihitnum = multihitnum + 1;
+            [B, I] = sort(tmpcmpts(:,cmpts_r))
+            tmp = tmpcmpts(I, cmpts_inir).*tmpcmpts(I, cmpts_wnir)/ ...
+                  pulse_fwhm_nir;
+            tmp = 1 - cumsum(tmp);
+            tmp(tmp<0) = 0;
+            tmp(tmp>1) = 1;
+            [~, I_inv] = sort(I);
+            tmp = tmp(I_inv);
+            pgap_raw(tmpflag, 1) = tmp;
+            tmp = tmpcmpts(I, cmpts_iswir).*tmpcmpts(I, cmpts_wswir)/ ...
+                  pulse_fwhm_swir;
+            tmp = 1 - cumsum(tmp);
+            tmp(tmp<0) = 0;
+            tmp(tmp>1) = 1;
+            [~, I_inv] = sort(I);
+            tmp = tmp(I_inv);
+            pgap_raw(tmpflag, 1) = tmp;
+        end
+    end
 end
 
 heights = 0:hbinsize:maxh;
