@@ -39,13 +39,21 @@ from sherpa.fit import Fit
 
 # ******************************************************************************
 # Some inputs
-wavelength = 1548
-CalFileName='/projectnb/echidna/lidar/DWEL_Processing/DWEL_TestCal/cal-nsf-20140812/cal-nsf-20140812-panel-returns-summary/cal-nsf-20140812-panel-return-refined/cal_nsf_20140812_panel_returns_refined_stats_1548_for_calest.txt'
-panelrefl = np.array([0.984,0.349,0.245,0.041])
+# wavelength = 1548
+# CalFileName='/projectnb/echidna/lidar/DWEL_Processing/DWEL_TestCal/cal-nsf-20140812/cal-nsf-20140812-panel-returns-summary/cal-nsf-20140812-panel-return-refined/cal_nsf_20140812_panel_returns_refined_stats_1548_for_calest.txt'
+# panelrefl = np.array([0.984,0.349,0.245,0.041])
 
 # wavelength = 1064
 # CalFileName='/projectnb/echidna/lidar/DWEL_Processing/DWEL_TestCal/cal-nsf-20140812/cal-nsf-20140812-panel-returns-summary/cal-nsf-20140812-panel-return-refined/cal_nsf_20140812_panel_returns_refined_stats_1064_for_calest.txt'
 # panelrefl = np.array([0.987, 0.436, 0.320, 0.041])
+
+wavelength = 1548
+CalFileName = '/projectnb/echidna/lidar/DWEL_Processing/DWEL_TestCal/cal-nsf-20140812/cal-nsf-20140812-wire-removed-panel-returns-summary/cal-nsf-20140812-wire-removed-panel-returns-refined-summary/cal_nsf_20140812_wire_removed_panel_returns_refined_stats_1548_for_calest.txt';
+panelrefl = np.array([0.984,0.4472,0.3288,0.041])
+
+# wavelength = 1064
+# CalFileName = '/projectnb/echidna/lidar/DWEL_Processing/DWEL_TestCal/cal-nsf-20140812/cal-nsf-20140812-wire-removed-panel-returns-summary/cal-nsf-20140812-wire-removed-panel-returns-refined-summary/cal_nsf_20140812_wire_removed_panel_returns_refined_stats_1064_for_calest.txt';
+# panelrefl = np.array([0.987,0.5741,0.4313,0.041])
 
 # number of panels in the input csv filel
 numpanels = 3
@@ -97,13 +105,13 @@ for p in range(0, numpanels):
     if ptsind >= npts:
       break
 
-tmpflag = panelind != 0
-ranges = ranges[tmpflag]
-refls = refls[tmpflag]
-ret_ints = ret_ints[tmpflag]
-ret_ints_sd = ret_ints_sd[tmpflag]
-panelind = panelind[tmpflag]
-rangeind = rangeind[tmpflag]
+# tmpflag = panelind != 0
+# ranges = ranges[tmpflag]
+# refls = refls[tmpflag]
+# ret_ints = ret_ints[tmpflag]
+# ret_ints_sd = ret_ints_sd[tmpflag]
+# panelind = panelind[tmpflag]
+# rangeind = rangeind[tmpflag]
     
 # remove some not-so-good data points according to log analysis of far range
 # data.
@@ -120,10 +128,11 @@ oldrangeind = rangeind
 #   tmpflag = np.logical_or(panelind == 0, ranges<6.0)
 
 if wavelength == 1548:
-  tmpflag = np.logical_or(panelind == 0, np.logical_and(ranges > 34.5, ranges < 40.5))
+  # tmpflag = np.logical_or(panelind == 0, np.logical_and(ranges > 34.5, ranges < 40.5))
+  tmpflag = np.logical_and(ranges > 34.5, ranges < 40.5)
 else:
-  tmpflag = np.logical_or(panelind == 0)
-
+  tmpflag = panelind == 4
+  
 ranges = ranges[np.logical_not(tmpflag)]
 refls = refls[np.logical_not(tmpflag)]
 ret_ints = ret_ints[np.logical_not(tmpflag)]

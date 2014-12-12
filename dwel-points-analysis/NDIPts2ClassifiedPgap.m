@@ -69,4 +69,3 @@ fclose(fid);
 % David Jupp's linear model
 %[LAIprofile, MLA, LAVD] = LM_pgap2profile(midzeniths,heights,pgapz_leaf);
 %[BAIprofile, MBA, BAVD] = LM_pgap2profile(midzeniths,heights,pgapz_branch);
-

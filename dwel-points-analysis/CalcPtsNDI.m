@@ -88,7 +88,7 @@ fprintf(fid, '%s; NDI classification, NDI_thresh=%f\n', linestr, NDI_threshold);
 linestr = fgetl(infid);
 fprintf(fid, '%s\n', linestr);
 fclose(infid);
-fprintf(fid, 'X,Y,Z,d_I,R,G,B,range,theta,phynumber_of_returns,sample,line\n');
+fprintf(fid, 'X,Y,Z,d_I,R,G,B,range,theta,phi,number_of_returns,sample,line\n');
 fprintf(fid, '%.3f,%.3f,%.3f,%.3f,%d,%d,%d,%.3f,%.3f,%.3f,%d,%d,%d\n', ([pts_mean, pts_ndi, rgb, pts1064(i1064,9:11), pts1064(i1064,6), pts1064(i1064,12:13)])');
 fclose(fid);
 
