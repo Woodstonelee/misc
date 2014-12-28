@@ -18,44 +18,43 @@
 % some input parameters
 % indir = ['/projectnb/echidna/lidar/DWEL_Processing/DWEL_TestCal/cal-nsf-' ...
 %          '20140812/cal-nsf-20140812-panel-returns-summary']; 
-indir = '/projectnb/echidna/lidar/DWEL_Processing/DWEL_TestCal/cal-nsf-20140812/cal-nsf-20140812-wire-removed-panel-returns-summary/cal-nsf-20140812-wire-removed-panel-returns-refined-summary';
-
-oldrefineddir = '/projectnb/echidna/lidar/DWEL_Processing/DWEL_TestCal/cal-nsf-20140812/cal-nsf-20140812-panel-returns-summary/cal-nsf-20140812-panel-return-refined';
+indir = ['/projectnb/echidna/lidar/DWEL_Processing/DWEL_TestCal/cal-nsf-' ...
+         '20140812/cal-nsf-20140812-wire-removed-panel-returns-summary'];
 
 infiles = { ...
-'cal_nsf_20140812_0.5_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_1.5_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_10_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_11_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_12_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_13_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_14_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_15_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_1_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_2.5_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_20_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_25_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_2_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_3.5_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_30_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_35_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_3_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_4.5_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_40_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_4_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_5.5_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_50_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_5_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_6.5_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_60_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_6_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_7.5_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_70_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_7_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_8.5_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_8_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_9.5_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_9_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
+'cal_nsf_20140812_0.5_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_1.5_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_10_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_11_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_12_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_13_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_14_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_15_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_1_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_2.5_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_20_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_25_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_2_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_3.5_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_30_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_35_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_3_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_4.5_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_40_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_4_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_5.5_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_50_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_5_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_6.5_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_60_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_6_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_7.5_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_70_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_7_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_8.5_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_8_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_9.5_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_9_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
 };
 
 inwiredir = ['/projectnb/echidna/lidar/DWEL_Processing/DWEL_TestCal/cal-nsf-' ...
@@ -96,6 +95,10 @@ inwirefiles = { ...
 'cal_nsf_20140812_9.5_1064_cube_bsfix_pxc_update_filtfix_wire.log', ...
 'cal_nsf_20140812_9_1064_cube_bsfix_pxc_update_filtfix_wire.log', ...
 };
+
+indexfile = ['/usr3/graduate/zhanli86/Programs/misc/dwel-static-scan-' ...
+             'analysis/cal_nsf_20140812_select_shots_1064.csv']; 
+
 timebin = 0.1; % ns
 dnbin = 1; % dn
 
@@ -112,6 +115,13 @@ refinedoutfile = 'cal_nsf_20140812_wire_removed_panel_returns_refined_stats_1064
 plotflag = 1; % if plot figures and save figures for each scan. 
 
 % ******************************************************************************
+
+% read indices of select panel returns in the ascii files of panel returns. 
+fid = fopen(indexfile, 'r');
+data = textscan(fid, repmat('%f', 1, 11), 'HeaderLines', 1, 'Delimiter', ',');
+fclose(fid);
+inddata = cell2mat(data);
+clear data;
 
 numfiles = length(infiles);
 
@@ -143,6 +153,19 @@ ptzeroI_min = zeros(numfiles, 1);
 ptzeroI_max = zeros(numfiles, 1);
 ptzeroI_sd = zeros(numfiles, 1);
 
+I_mean = zeros(numfiles, numpanels);
+I_sd = zeros(numfiles, numpanels);
+I_min = zeros(numfiles, numpanels);
+I_max = zeros(numfiles, numpanels);
+fwhm_mean = zeros(numfiles, numpanels);
+fwhm_sd = zeros(numfiles, numpanels);
+fwhm_min = zeros(numfiles, numpanels);
+fwhm_max = zeros(numfiles, numpanels);
+totalI_mean = zeros(numfiles, numpanels);
+totalI_sd = zeros(numfiles, numpanels);
+totalI_min = zeros(numfiles, numpanels);
+totalI_max = zeros(numfiles, numpanels);
+
 % c_kd = P_r*range^2/refl
 c_kd_mean = zeros(numfiles, 1);
 
@@ -169,69 +192,73 @@ for fnum=1:numfiles
   % read the data of panel returns
   filename = fullfile(indir, infiles{fnum});
   fid = fopen(filename, 'r');
-  data = textscan(fid, repmat('%f', 1, 6), 'HeaderLines', 1, 'Delimiter', ',');
+  data = textscan(fid, repmat('%f', 1, 9), 'HeaderLines', 1, 'Delimiter', ',');
   fclose(fid);
   if isempty(data{2})
       continue
   end
   data = cell2mat(data);
 
-  % read the data of old refined panel returns to find select good returns
-  fid = fopen(fullfile(oldrefineddir, infiles{fnum}), 'r');
-  olddata = textscan(fid, repmat('%f', 1, 9), 'HeaderLines', 1, 'Delimiter', ',');
-  fclose(fid);
-  olddata = cell2mat(olddata);
-  
-  [~, ia, ib] = intersect(data(:, 4:5), olddata(:, 4:5), 'rows');
-  data = data(ia, :);
-  panelind = olddata(ib, 9);
+  pind = find(inddata(:,1)==panelrange);
+  if isempty(pind) || pind == -1
+      continue
+  end
 
   % get the wire signal for each select target return
   % read wire signal data
   fid = fopen(fullfile(inwiredir, inwirefiles{fnum}), 'r');
-  wiredata = textscan(fid, repmat('%f', 1, 7), 'HeaderLines', 2, 'Delimiter', ',');
+  wiredata = textscan(fid, repmat('%f', 1, 8), 'HeaderLines', 2, 'Delimiter', ',');
   fclose(fid);
   wiredata = cell2mat(wiredata);
 
-  [~, ia, ib] = intersect(data(:,4:5), wiredata(:,5:6), 'rows');
-
-  data = data(ia, :);
-  wiredata = wiredata(ib, :);
-  panelind = panelind(ia);
-  [data, tmpind] = sortrows(data, [5,4]);
-  wiredata = wiredata(tmpind, :);
-  panelind = panelind(tmpind);
-
-  if isempty(data)
-      continue
-  end
-
-  selectind = [];
+  pselectind = false(size(data, 1), 1);
+  wselectind = false(size(wiredata, 1), 1);
+  allpanelind = zeros(size(data, 1), 1);
   % for each panel of each reflectance
   for pnum = 1:numpanels
-      tmpind = find(panelind == pnum);
-      
+
+      startind = inddata(pind, pnum*2);
+      endind = inddata(pind, pnum*2+1);
+      if startind == 0 && endind ==0 
+          continue
+      end
+      tmpind = data(:,1)>=startind & data(:,1)<=endind & data(:,9)==0 & ...
+               data(:,4)>inddata(pind, 10) & data(:,4)<inddata(pind,11); 
       tmpdata = data(tmpind, :);
-      tmpflag = tmpdata(:,6) == 0;
-      tmpdata = tmpdata(tmpflag, :);
 
       if isempty(tmpdata)
           continue
       end
 
-      % get wire data
-      tmpwiredata = wiredata(tmpind, :);
-      tmpwiredata = tmpwiredata(tmpflag, :);
+      pselectind = pselectind | tmpind;
+      allpanelind(tmpind) = pnum;
 
-      selectind = [selectind; tmpind(tmpflag)];
-      rg_mean(fnum, pnum) = mean(tmpdata(:, 3));
-      rg_sd(fnum, pnum) = std(tmpdata(:, 3));
-      rg_min(fnum, pnum) = min(tmpdata(:, 3));
-      rg_max(fnum, pnum) = max(tmpdata(:, 3));
-      int_mean(fnum, pnum) =  mean(tmpdata(:, 1));
-      int_sd(fnum, pnum) = std(tmpdata(:, 1));
-      int_min(fnum, pnum) = min(tmpdata(:, 1));
-      int_max(fnum, pnum) = max(tmpdata(:, 1));
+      % get wire data
+      lia = ismember(wiredata(:, 8), data(tmpind, 1));
+      tmpwiredata = wiredata(lia, :);
+      wselectind = wselectind | lia;
+
+      rg_mean(fnum, pnum) = mean(tmpdata(:, 4));
+      rg_sd(fnum, pnum) = std(tmpdata(:, 4));
+      rg_min(fnum, pnum) = min(tmpdata(:, 4));
+      rg_max(fnum, pnum) = max(tmpdata(:, 4));
+      int_mean(fnum, pnum) =  mean(tmpdata(:, 2));
+      int_sd(fnum, pnum) = std(tmpdata(:, 2));
+      int_min(fnum, pnum) = min(tmpdata(:, 2));
+      int_max(fnum, pnum) = max(tmpdata(:, 2));
+
+      I_mean(fnum, pnum) = mean(tmpdata(:, 5));
+      I_sd(fnum, pnum) = std(tmpdata(:, 5));
+      I_min(fnum, pnum) = min(tmpdata(:, 5));
+      I_max(fnum, pnum) = max(tmpdata(:, 5));
+      fwhm_mean(fnum, pnum) = mean(tmpdata(:, 6));
+      fwhm_sd(fnum, pnum) = std(tmpdata(:, 6));
+      fwhm_min(fnum, pnum) = min(tmpdata(:, 6));
+      fwhm_max(fnum, pnum) = max(tmpdata(:, 6));
+      totalI_mean(fnum, pnum) = mean(tmpdata(:, 5).*tmpdata(:, 6));
+      totalI_sd(fnum, pnum) = std(tmpdata(:, 5).*tmpdata(:, 6));
+      totalI_min(fnum, pnum) = min(tmpdata(:, 5).*tmpdata(:, 6));
+      totalI_max(fnum, pnum) = max(tmpdata(:, 5).*tmpdata(:, 6));
 
       % get stats of wire data
       tzero_mean(fnum, pnum) = mean(tmpwiredata(:,1));
@@ -245,13 +272,11 @@ for fnum=1:numfiles
       tzeroI_md(fnum, pnum) = median(tmpwiredata(:,2));
   end 
 
-  satnum(fnum, :) = [panelrange, sum(data(:, 6))];
+  satnum(fnum, :) = [panelrange, sum(data(:, 9))];
 
-  data = data(selectind, :);
-  wiredata = wiredata(selectind, :);
-  panelind = panelind(selectind);
-  % tmpflag = data(:, 3) > inddata(pind, 10) & data(:, 3) < inddata(pind, 11);
-  % data = data(tmpflag, :);
+  data = data(pselectind, :);
+  allpanelind = allpanelind(pselectind);
+  wiredata = wiredata(wselectind, :);
 
   ptzeroI_md(fnum) = median(wiredata(:, 2));
   ptzeroI_mean(fnum) = mean(wiredata(:, 2));
@@ -262,18 +287,18 @@ for fnum=1:numfiles
   % output the refined panels returns to a new file
   tmpstr = infiles{fnum};
   tmpstr = tmpstr(1:end-4);
-  outfile = fullfile(refinedoutdir, ['for_wire_removed_', tmpstr, '_refined.txt']);
+  outfile = fullfile(refinedoutdir, [tmpstr, '_refined.txt']);
   fid = fopen(outfile, 'w');
-  fprintf(fid, 'd_out,number_of_returns,range,sample,line,sat_flag,tzero,tzero_int,panel_ind\n');
-  fprintf(fid, '%.3f,%d,%.3f,%d,%d,%d,%.3f,%.3f,%d\n', ([data,wiredata(:,1:2),panelind])');
+  fprintf(fid, 'shot_num,d_out,number_of_returns,range,I,FWHM,sample,line,sat_flag,tzero,tzero_int,panel_ind\n');
+  fprintf(fid, '%d,%.3f,%d,%.3f,%.3f,%.3f,%d,%d,%d,%.3f,%.3f,%d\n', ([data,wiredata(:,1:2),allpanelind])');
   fclose(fid);
 
   if plotflag
-    x = 1:size(data, 1);
+    x = data(:, 1);
     % plot intensity and range
     figh = figure('Name', ['1064 nm at ', num2str(panelrange), 'm'], 'Visible', ...
                   'off');
-    [hax, h1, h2] = plotyy(x, data(:,3), x, data(:, 1));
+    [hax, h1, h2] = plotyy(x, data(:,4), x, data(:, 2));
     set(h1, 'linestyle', 'none', 'marker', '.', 'color', 'r');
     set(hax(1), 'ycolor', 'r')
     set(h2, 'linestyle', 'none', 'marker', '.', 'color', 'b');
@@ -283,8 +308,8 @@ for fnum=1:numfiles
     xlabel('Laser shot sequence number');
     ylabel(hax(2), 'intensity after pre-processing, not scaled');
     ylabel(hax(1), 'range');
-    saveas(figh, fullfile(refinedoutdir, ['for_wire_removed_', tmpstr, '_refined.fig']));
-    export_fig(fullfile(refinedoutdir, ['for_wire_removed_', tmpstr, '_refined.png']), '-png',['-' ...
+    saveas(figh, fullfile(refinedoutdir, [tmpstr, '_refined.fig']));
+    export_fig(fullfile(refinedoutdir, [tmpstr, '_refined.png']), '-png',['-' ...
                         'r300'],'-painters',figh);
     close(figh);
   end
@@ -292,11 +317,11 @@ for fnum=1:numfiles
   % write the select wire signals to a new file
   tmpstr = inwirefiles{fnum};
   tmpstr = tmpstr(1:end-4);
-  fid = fopen(fullfile(inwiredir, ['for_wire_removed_', tmpstr, '_refined.txt']), 'w');
+  fid = fopen(fullfile(inwiredir, [tmpstr, '_refined.txt']), 'w');
   fprintf(fid, ['DWEL stationary scan wire signal log File, refined for wire ' ...
                 'removed reprocessing\n']);
-  fprintf(fid, 'tzero,intensity,time[k],int[k],sample,line,band\n');
-  fprintf(fid, '%.3f,%.3f,%.3f,%d,%d,%d,%d\n', wiredata');
+  fprintf(fid, 'tzero,intensity,time[k],int[k],sample,line,band,shot_num\n');
+  fprintf(fid, '%.3f,%.3f,%.3f,%.3f,%d,%d,%d,%d\n', wiredata');
   fclose(fid);
 
   if plotflag
@@ -320,12 +345,12 @@ for fnum=1:numfiles
     title(['T_0 against T_0 intensity at 1064 nm at ', num2str(panelrange), ' ' ...
                         'm']);
     subplot(2,2,4);
-    plot(wiredata(:,2), '.');
+    plot(wiredata(:, 8), wiredata(:,2), '.');
     xlabel('shot sequence number');
     ylabel('T_0 intensity');
     title(['T_0 intensity change at 1064 nm at ', num2str(panelrange), ' m'])
-    saveas(figh, fullfile(inwiredir, ['for_wire_removed_', tmpstr, '_refined.fig']));
-    export_fig(fullfile(inwiredir, ['for_wire_removed_', tmpstr, '_refined.png']), '-png',['-' ...
+    saveas(figh, fullfile(inwiredir, [tmpstr, '_refined.fig']));
+    export_fig(fullfile(inwiredir, [tmpstr, '_refined.png']), '-png',['-' ...
                         'r300'],'-painters', figh);
     close(figh);
   end
@@ -450,6 +475,18 @@ fprintf(fid, [repmat('%.3f,', 1, 67), '%.3f\n'], ([rg_mean, rg_sd, rg_min, ...
                     tzero_sd, tzero_min, tzero_max, tzeroI_mean, tzeroI_sd, ...
                     tzeroI_min, tzeroI_max, tzeroI_md])');
 fclose(fid);
+
+% Now check the I and totalI (I*FWHM)
+figure('Name', '1064 nm, I v.s. I*FWHM');
+plot(I_mean, totalI_mean, '.')
+xlabel('Peak I');
+ylabel('Total I');
+% axis([0,70,0,1000]);
+title('20140812 at 1064 nm');
+legend('Lambertian panel', 'Gray panel 1', 'Gray panel 2', 'Black panel', ...
+       'Location', 'southeast');
+export_fig(fullfile(refinedoutdir, [refinedoutfile(1:end-4), '_I_totalI.png']), ...
+      '-png','-r300','-painters');
 
 % Now plot the intensity against range for all panels
 figure('Name', '1064 nm panel returns refined statistics');

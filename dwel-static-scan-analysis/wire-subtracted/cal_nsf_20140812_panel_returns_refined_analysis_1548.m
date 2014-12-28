@@ -1,4 +1,4 @@
-%% Analysis of cal_nsf_20140812 panel returns at 1548 nm after noise returns
+%% Analysis of cal_nsf_20140812 panel returns at 1064 nm after noise returns
 %% furhther reduced
 % Panels returns from stationary scans are summarized in ascii files after
 % cleanning up most noise points. Now further clean up outliers in the panel
@@ -6,51 +6,55 @@
 % determined by inspecting panel returns at each range and each wavelength. 
 % Calculate the mean intensity, mean range and their standard deviations for
 % four panels of different reflectances. 
+%
+% Here we are analyzing the reprocessed static panel scans after substracting
+% wire signals from waveforms after post-fix processing. 
 % 
 % Zhan Li, zhanli86@bu.edu
 % Created: 20141106
-% Last modified: 20141106
+% Last modified: 20141209
 
 % ******************************************************************************
 % some input parameters
-indir = '/projectnb/echidna/lidar/DWEL_Processing/DWEL_TestCal/cal-nsf-20140812/cal-nsf-20140812-wire-removed-panel-returns-summary/cal-nsf-20140812-wire-removed-panel-returns-refined-summary';
-
-oldrefineddir = '/projectnb/echidna/lidar/DWEL_Processing/DWEL_TestCal/cal-nsf-20140812/cal-nsf-20140812-panel-returns-summary/cal-nsf-20140812-panel-return-refined';
+% indir = ['/projectnb/echidna/lidar/DWEL_Processing/DWEL_TestCal/cal-nsf-' ...
+%          '20140812/cal-nsf-20140812-panel-returns-summary']; 
+indir = ['/projectnb/echidna/lidar/DWEL_Processing/DWEL_TestCal/cal-nsf-' ...
+         '20140812/cal-nsf-20140812-wire-removed-panel-returns-summary'];
 
 infiles = { ...
-'cal_nsf_20140812_0.5_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_1.5_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_10_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_11_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_12_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_13_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_14_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_15_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_1_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_2.5_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_20_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_25_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_2_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_3.5_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_30_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_35_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_3_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_4.5_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_40_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_4_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_5.5_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_50_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_5_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_6.5_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_60_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_6_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_7.5_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_70_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_7_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_8.5_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_8_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_9.5_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
-'cal_nsf_20140812_9_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt'...
+'cal_nsf_20140812_0.5_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_1.5_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_10_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_11_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_12_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_13_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_14_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_15_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_1_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_2.5_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_20_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_25_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_2_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_3.5_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_30_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_35_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_3_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_4.5_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_40_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_4_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_5.5_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_50_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_5_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_6.5_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_60_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_6_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_7.5_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_70_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_7_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_8.5_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_8_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_9.5_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
+'cal_nsf_20140812_9_1548_cube_bsfix_pxc_update_ptcl_points_panel_returns.txt'...
 };
 
 inwiredir = ['/projectnb/echidna/lidar/DWEL_Processing/DWEL_TestCal/cal-nsf-' ...
@@ -91,24 +95,33 @@ inwirefiles = { ...
 'cal_nsf_20140812_9.5_1548_cube_bsfix_pxc_update_filtfix_wire.log', ...
 'cal_nsf_20140812_9_1548_cube_bsfix_pxc_update_filtfix_wire.log', ...
 };
+
+indexfile = ['/usr3/graduate/zhanli86/Programs/misc/dwel-static-scan-' ...
+             'analysis/cal_nsf_20140812_select_shots_1548.csv']; 
+
 timebin = 0.1; % ns
 dnbin = 1; % dn
 
 numpanels = 4;
-%panelrefl = [0.984, 0.349, 0.245, 0.041];
-panelrefl = [0.984, 0.4472, 0.3288, 0.041];
+panelrefl = [0.987, 0.4472, 0.3288, 0.041];
 
 % refinedoutdir = ['/projectnb/echidna/lidar/DWEL_Processing/DWEL_TestCal/cal-' ...
 %                  'nsf-20140812/cal-nsf-20140812-panel-returns-summary/cal-' ...
 %                  'nsf-20140812-panel-return-refined'];
-% refinedoutfile = 'cal_nsf_20140812_panel_returns_refined_stats_1548.txt';
-
 refinedoutdir = '/projectnb/echidna/lidar/DWEL_Processing/DWEL_TestCal/cal-nsf-20140812/cal-nsf-20140812-wire-removed-panel-returns-summary/cal-nsf-20140812-wire-removed-panel-returns-refined-summary';
 refinedoutfile = 'cal_nsf_20140812_wire_removed_panel_returns_refined_stats_1548.txt';
 
-plotflag = 1; 
+plotflag = 1; % if plot figures and save figures for each scan. 
 
 % ******************************************************************************
+
+% read indices of select panel returns in the ascii files of panel returns. 
+fid = fopen(indexfile, 'r');
+data = textscan(fid, repmat('%f', 1, 11), 'HeaderLines', 1, 'Delimiter', ',');
+fclose(fid);
+inddata = cell2mat(data);
+clear data;
+
 numfiles = length(infiles);
 
 prange = zeros(numfiles, 1);
@@ -139,6 +152,22 @@ ptzeroI_min = zeros(numfiles, 1);
 ptzeroI_max = zeros(numfiles, 1);
 ptzeroI_sd = zeros(numfiles, 1);
 
+I_mean = zeros(numfiles, numpanels);
+I_sd = zeros(numfiles, numpanels);
+I_min = zeros(numfiles, numpanels);
+I_max = zeros(numfiles, numpanels);
+fwhm_mean = zeros(numfiles, numpanels);
+fwhm_sd = zeros(numfiles, numpanels);
+fwhm_min = zeros(numfiles, numpanels);
+fwhm_max = zeros(numfiles, numpanels);
+totalI_mean = zeros(numfiles, numpanels);
+totalI_sd = zeros(numfiles, numpanels);
+totalI_min = zeros(numfiles, numpanels);
+totalI_max = zeros(numfiles, numpanels);
+
+% c_kd = P_r*range^2/refl
+c_kd_mean = zeros(numfiles, 1);
+
 for fnum=1:numfiles
 
   % get the range from the file name
@@ -162,73 +191,73 @@ for fnum=1:numfiles
   % read the data of panel returns
   filename = fullfile(indir, infiles{fnum});
   fid = fopen(filename, 'r');
-  data = textscan(fid, repmat('%f', 1, 6), 'HeaderLines', 1, 'Delimiter', ',');
+  data = textscan(fid, repmat('%f', 1, 9), 'HeaderLines', 1, 'Delimiter', ',');
   fclose(fid);
   if isempty(data{2})
       continue
   end
   data = cell2mat(data);
 
-  % read the data of old refined panel returns to find select good returns
-  fid = fopen(fullfile(oldrefineddir, infiles{fnum}), 'r');
-  olddata = textscan(fid, repmat('%f', 1, 9), 'HeaderLines', 1, 'Delimiter', ',');
-  fclose(fid);
-  olddata = cell2mat(olddata);
-  
-  [~, ia, ib] = intersect(data(:, 4:5), olddata(:, 4:5), 'rows');
-  data = data(ia, :);
-  panelind = olddata(ib, 9);
+  pind = find(inddata(:,1)==panelrange);
+  if isempty(pind) || pind == -1
+      continue
+  end
 
   % get the wire signal for each select target return
   % read wire signal data
   fid = fopen(fullfile(inwiredir, inwirefiles{fnum}), 'r');
-  wiredata = textscan(fid, repmat('%f', 1, 7), 'HeaderLines', 2, 'Delimiter', ',');
+  wiredata = textscan(fid, repmat('%f', 1, 8), 'HeaderLines', 2, 'Delimiter', ',');
   fclose(fid);
   wiredata = cell2mat(wiredata);
 
-  [~, ia, ib] = intersect(data(:,4:5), wiredata(:,5:6), 'rows');
-
-  data = data(ia, :);
-  wiredata = wiredata(ib, :);
-  panelind = panelind(ia);
-  [data, tmpind] = sortrows(data, [5,4]);
-  wiredata = wiredata(tmpind, :);
-  panelind = panelind(tmpind);
-
-  if isempty(data)
-      continue
-  end
-
-  selectind = [];
+  pselectind = false(size(data, 1), 1);
+  wselectind = false(size(wiredata, 1), 1);
+  allpanelind = zeros(size(data, 1), 1);
   % for each panel of each reflectance
   for pnum = 1:numpanels
-      tmpind = find(panelind == pnum);
 
+      startind = inddata(pind, pnum*2);
+      endind = inddata(pind, pnum*2+1);
+      if startind == 0 && endind ==0 
+          continue
+      end
+      tmpind = data(:,1)>=startind & data(:,1)<=endind & data(:,9)==0 & ...
+               data(:,4)>inddata(pind, 10) & data(:,4)<inddata(pind,11); 
       tmpdata = data(tmpind, :);
-      tmpflag = tmpdata(:,6) == 0;
-
-      % if sum(tmpflag)==0
-      %     continue
-      % end
-      tmpdata = tmpdata(tmpflag, :);
 
       if isempty(tmpdata)
           continue
       end
 
-      % get wire data
-      tmpwiredata = wiredata(tmpind, :);
-      tmpwiredata = tmpwiredata(tmpflag, :);
+      pselectind = pselectind | tmpind;
+      allpanelind(tmpind) = pnum;
 
-      selectind = [selectind; tmpind(tmpflag)];
-      rg_mean(fnum, pnum) = mean(tmpdata(:, 3));
-      rg_sd(fnum, pnum) = std(tmpdata(:, 3));
-      rg_min(fnum, pnum) = min(tmpdata(:, 3));
-      rg_max(fnum, pnum) = max(tmpdata(:, 3));
-      int_mean(fnum, pnum) =  mean(tmpdata(:, 1));
-      int_sd(fnum, pnum) = std(tmpdata(:, 1));
-      int_min(fnum, pnum) = min(tmpdata(:, 1));
-      int_max(fnum, pnum) = max(tmpdata(:, 1));
+      % get wire data
+      lia = ismember(wiredata(:, 8), data(tmpind, 1));
+      tmpwiredata = wiredata(lia, :);
+      wselectind = wselectind | lia;
+
+      rg_mean(fnum, pnum) = mean(tmpdata(:, 4));
+      rg_sd(fnum, pnum) = std(tmpdata(:, 4));
+      rg_min(fnum, pnum) = min(tmpdata(:, 4));
+      rg_max(fnum, pnum) = max(tmpdata(:, 4));
+      int_mean(fnum, pnum) =  mean(tmpdata(:, 2));
+      int_sd(fnum, pnum) = std(tmpdata(:, 2));
+      int_min(fnum, pnum) = min(tmpdata(:, 2));
+      int_max(fnum, pnum) = max(tmpdata(:, 2));
+
+      I_mean(fnum, pnum) = mean(tmpdata(:, 5));
+      I_sd(fnum, pnum) = std(tmpdata(:, 5));
+      I_min(fnum, pnum) = min(tmpdata(:, 5));
+      I_max(fnum, pnum) = max(tmpdata(:, 5));
+      fwhm_mean(fnum, pnum) = mean(tmpdata(:, 6));
+      fwhm_sd(fnum, pnum) = std(tmpdata(:, 6));
+      fwhm_min(fnum, pnum) = min(tmpdata(:, 6));
+      fwhm_max(fnum, pnum) = max(tmpdata(:, 6));
+      totalI_mean(fnum, pnum) = mean(tmpdata(:, 5).*tmpdata(:, 6));
+      totalI_sd(fnum, pnum) = std(tmpdata(:, 5).*tmpdata(:, 6));
+      totalI_min(fnum, pnum) = min(tmpdata(:, 5).*tmpdata(:, 6));
+      totalI_max(fnum, pnum) = max(tmpdata(:, 5).*tmpdata(:, 6));
 
       % get stats of wire data
       tzero_mean(fnum, pnum) = mean(tmpwiredata(:,1));
@@ -242,13 +271,11 @@ for fnum=1:numfiles
       tzeroI_md(fnum, pnum) = median(tmpwiredata(:,2));
   end 
 
-  satnum(fnum, :) = [panelrange, sum(data(:, 6))];
+  satnum(fnum, :) = [panelrange, sum(data(:, 9))];
 
-  data = data(selectind, :);
-  wiredata = wiredata(selectind, :);
-  panelind = panelind(selectind, :);
-  % tmpflag = data(:, 3) > inddata(pind, 10) & data(:, 3) < inddata(pind, 11);
-  % data = data(tmpflag, :);
+  data = data(pselectind, :);
+  allpanelind = allpanelind(pselectind);
+  wiredata = wiredata(wselectind, :);
 
   ptzeroI_md(fnum) = median(wiredata(:, 2));
   ptzeroI_mean(fnum) = mean(wiredata(:, 2));
@@ -259,18 +286,18 @@ for fnum=1:numfiles
   % output the refined panels returns to a new file
   tmpstr = infiles{fnum};
   tmpstr = tmpstr(1:end-4);
-  outfile = fullfile(refinedoutdir, ['for_wire_removed_', tmpstr,'_refined.txt']);
+  outfile = fullfile(refinedoutdir, [tmpstr, '_refined.txt']);
   fid = fopen(outfile, 'w');
-  fprintf(fid, 'd_out,number_of_returns,range,sample,line,sat_flag,tzero,tzero_int,panel_ind\n');
-  fprintf(fid, '%.3f,%d,%.3f,%d,%d,%d,%.3f,%.3f,%d\n', ([data,wiredata(:,1:2),panelind])');
+  fprintf(fid, 'shot_num,d_out,number_of_returns,range,I,FWHM,sample,line,sat_flag,tzero,tzero_int,panel_ind\n');
+  fprintf(fid, '%d,%.3f,%d,%.3f,%.3f,%.3f,%d,%d,%d,%.3f,%.3f,%d\n', ([data,wiredata(:,1:2),allpanelind])');
   fclose(fid);
 
   if plotflag
-    x = 1:size(data, 1);
+    x = data(:, 1);
     % plot intensity and range
     figh = figure('Name', ['1548 nm at ', num2str(panelrange), 'm'], 'Visible', ...
                   'off');
-    [hax, h1, h2] = plotyy(x, data(:,3), x, data(:, 1));
+    [hax, h1, h2] = plotyy(x, data(:,4), x, data(:, 2));
     set(h1, 'linestyle', 'none', 'marker', '.', 'color', 'r');
     set(hax(1), 'ycolor', 'r')
     set(h2, 'linestyle', 'none', 'marker', '.', 'color', 'b');
@@ -280,8 +307,8 @@ for fnum=1:numfiles
     xlabel('Laser shot sequence number');
     ylabel(hax(2), 'intensity after pre-processing, not scaled');
     ylabel(hax(1), 'range');
-    saveas(figh, fullfile(refinedoutdir, ['for_wire_removed_', tmpstr, '_refined.fig']));
-    export_fig(fullfile(refinedoutdir, ['for_wire_removed_', tmpstr, '_refined.png']), '-png',['-' ...
+    saveas(figh, fullfile(refinedoutdir, [tmpstr, '_refined.fig']));
+    export_fig(fullfile(refinedoutdir, [tmpstr, '_refined.png']), '-png',['-' ...
                         'r300'],'-painters',figh);
     close(figh);
   end
@@ -289,10 +316,11 @@ for fnum=1:numfiles
   % write the select wire signals to a new file
   tmpstr = inwirefiles{fnum};
   tmpstr = tmpstr(1:end-4);
-  fid = fopen(fullfile(inwiredir, ['for_wire_removed_', tmpstr, '_refined.txt']), 'w');
-  fprintf(fid, 'DWEL stationary scan wire signal log File, refined\n');
-  fprintf(fid, 'tzero,intensity,time[k],int[k],sample,line,band\n');
-  fprintf(fid, '%.3f,%.3f,%.3f,%d,%d,%d,%d\n', wiredata');
+  fid = fopen(fullfile(inwiredir, [tmpstr, '_refined.txt']), 'w');
+  fprintf(fid, ['DWEL stationary scan wire signal log File, refined for wire ' ...
+                'removed reprocessing\n']);
+  fprintf(fid, 'tzero,intensity,time[k],int[k],sample,line,band,shot_num\n');
+  fprintf(fid, '%.3f,%.3f,%.3f,%.3f,%d,%d,%d,%d\n', wiredata');
   fclose(fid);
 
   if plotflag
@@ -316,16 +344,73 @@ for fnum=1:numfiles
     title(['T_0 against T_0 intensity at 1548 nm at ', num2str(panelrange), ' ' ...
                         'm']);
     subplot(2,2,4);
-    plot(wiredata(:,2), '.');
+    plot(wiredata(:, 8), wiredata(:,2), '.');
     xlabel('shot sequence number');
     ylabel('T_0 intensity');
     title(['T_0 intensity change at 1548 nm at ', num2str(panelrange), ' m'])
-    saveas(figh, fullfile(inwiredir, ['for_wire_removed_', tmpstr, '_refined.fig']));
-    export_fig(fullfile(inwiredir, ['for_wire_removed_', tmpstr, '_refined.png']), '-png',['-' ...
-                        'r300'],'-painters',figh);
+    saveas(figh, fullfile(inwiredir, [tmpstr, '_refined.fig']));
+    export_fig(fullfile(inwiredir, [tmpstr, '_refined.png']), '-png',['-' ...
+                        'r300'],'-painters', figh);
     close(figh);
   end
 end
+
+% %%
+% % At ranges closer than 6 m, the wire signal intensities appear unstable
+% % possibly due to the mixing with target signal. Thus they can't be used to
+% % correct laser power variation. 
+% % 
+% % We will use a three-order polynomial function to fit the wire signal
+% % intensity change with panel sequence for the four panels. Then use fitted signal
+% % intensities for near ranges for laser power variation correction.
+
+% % Now fit 3-order polynomial to the wire intensities against panel sequence number
+% [~, tmpind] = sort(prange);
+% [~, tmpind] = sort(tmpind);
+% y = ptzeroI_md;
+% tmpflag = y ~= 0;
+% y = y(tmpflag);
+% x = tmpind(tmpflag);
+% p = polyfit(x, y, 3);
+% tmpx = 1:0.1:length(prange);
+% figure();
+% plot(x, y, 'o');
+% hold on;
+% plot(tmpx, polyval(p,tmpx), '-');
+
+% % tzeroI_fit = zeros(numfiles, numpanels);
+% % figure('Name', ['Three-order polyfit to wire intensities against ranges at ' ...
+% %                 '1548 nm']);
+% % colorstr = {'r', 'g', 'b', 'c'};
+% % [~, tmpind] = sort(prange);
+% % [~, tmpind] = sort(tmpind);
+% % tmpx = 1:0.1:length(prange);
+% % for pnum=1:numpanels
+% %     x = rg_mean(:, pnum);
+% %     y = tzeroI_mean(:, pnum);
+
+% %     tmpflag = x~=0 & x>=6 & y~=0;
+% %     x = x(tmpflag);
+% %     y = y(tmpflag);
+    
+% %     x = tmpind(tmpflag);
+
+% %     p = polyfit(x, y, 1);
+% %     tzeroI_fit(tmpflag, pnum) = polyval(p, x);
+% %     plot(x, y, ['o', colorstr{pnum}]);
+% %     hold on;
+
+% %     plot(tmpx, polyval(p, tmpx), ['-', colorstr{pnum}]);
+% % end
+% % xlabel('Range');
+% % ylabel('Tzero intensity after post-filter fix, not scaled');
+% % title('Wire returns and 3-order polyfit 20140812 at 1548 nm');
+% % legend('Lambertian panel', 'Gray panel 1', 'Gray panel 2', 'Black panel');
+% % export_fig(fullfile(refinedoutdir, [refinedoutfile(1:end-4), '_wire_intensity_polyfit.png']), ...
+% %       '-png','-r300','-painters');
+
+% % Now calculate the scaling ratio for laser power variation correction
+% int_scale = zeros(numfiles, numpanels);
 
 % Now save the statistics of panel returns to a ascii file
 fid = fopen(fullfile(refinedoutdir, refinedoutfile), 'w');
@@ -389,6 +474,18 @@ fprintf(fid, [repmat('%.3f,', 1, 67), '%.3f\n'], ([rg_mean, rg_sd, rg_min, ...
                     tzero_sd, tzero_min, tzero_max, tzeroI_mean, tzeroI_sd, ...
                     tzeroI_min, tzeroI_max, tzeroI_md])');
 fclose(fid);
+
+% Now check the I and totalI (I*FWHM)
+figure('Name', '1548 nm, I v.s. I*FWHM');
+plot(I_mean, totalI_mean, '.')
+xlabel('Peak I');
+ylabel('Total I');
+% axis([0,70,0,1000]);
+title('20140812 at 1548 nm');
+legend('Lambertian panel', 'Gray panel 1', 'Gray panel 2', 'Black panel', ...
+       'Location', 'southeast');
+export_fig(fullfile(refinedoutdir, [refinedoutfile(1:end-4), '_I_totalI.png']), ...
+      '-png','-r300','-painters');
 
 % Now plot the intensity against range for all panels
 figure('Name', '1548 nm panel returns refined statistics');
@@ -465,7 +562,7 @@ for pnum=1:numpanels
 end
 xlabel('Range');
 ylabel('intensity after pre-processing, not scaled, normalized by reflectance');
-%axis([0,70,0,1000]);
+axis([0,70,0,1000]);
 title('Panel returns 20140812 at 1548 nm, normalized by reflectance');
 legend(ebh, 'Lambertian panel', 'Gray panel 1', 'Gray panel 2', 'Black panel');
 export_fig(fullfile(refinedoutdir, [refinedoutfile(1:end-4), '_refl_normalized.png']), ...
@@ -521,11 +618,11 @@ legend(ebh, 'Lambertian panel', 'Gray panel 1', 'Gray panel 2', 'Black panel');
 export_fig(fullfile(refinedoutdir, [refinedoutfile(1:end-4), '_wire_intensity.png']), ...
       '-png','-r300','-painters');
 
-% After observing wire signal intensities, I conclude that the 1548 nm laser
-% power was fairly stable throught out the calibration data collection. 
-% Thus NO scaling will be used to correct laser power to avoid artificial
-% changes on the panel returns. 
 % Now calculate the scaling factor to correct laser power variation
+tmpflag = prange == 60; % use the wire intensity when scanning lambertian
+                        % panel at 60 meters. 
+baseint = tzeroI_mean(tmpflag, 1);
+fprintf('Laser power baseline DN for 1548 nm: %d\n', baseint);
 
 % Now plot the intensity against range for the three brighter panels after
 % correcting laser power variation with wire signal intensities beyond or at
@@ -544,18 +641,17 @@ scaled_int_sd = zeros(numfiles, numpanels-1);
 for pnum=1:numpanels-1
     x = rg_mean(:, pnum);
     y = int_mean(:, pnum);
-    %wireint = tzeroI_mean(:, pnum);
+    wireint = tzeroI_mean(:, pnum);
+    %tmpflag = x>=5.9 & y~=0;
     tmpflag = x~=0 & y~=0;
     if sum(tmpflag)==0
         continue
     end
     tmpind = find(tmpflag);
 
-    %wireint = wireint(tmpflag);
-    %scale_ratio = baseint./wireint;
-    
+    wireint = wireint(tmpflag);
+    scale_ratio = baseint./wireint;
     x = x(tmpflag);
-    scale_ratio = ones(size(x));
     y = y(tmpflag) .* scale_ratio;
     xerr = rg_sd(tmpflag, pnum);
     yerr = int_sd(tmpflag, pnum) .* scale_ratio;
@@ -600,7 +696,20 @@ export_fig(fullfile(refinedoutdir, [refinedoutfile(1:end-4), '_scaled.png']), ..
 % calibration estimate. 
 outdata = [rg_mean(:,1:3), rg_sd(:,1:3), scaled_int_mean, scaled_int_sd, ...
            scale_ratios];
-tmpflag = prange>=1.0 & prange<=70;
+% wire returns within 6.0 m is very unstable due to overlap with target
+% returns. Yet we want to temporarily include close range data in our
+% calibration now to get a commissioning calibration model. Then within 6 m,
+% we will simply use a constant scale ratio equal to the ratio at 6 m. 
+tmpflag = prange<6.0;
+outdata(tmpflag, 13:15) = repmat(scale_ratios(prange==6.0, :), sum(tmpflag), ...
+                                 1);
+outdata(tmpflag, 7:9) = outdata(tmpflag, 7:9)./scale_ratios(tmpflag, ...
+                                                  :).*outdata(tmpflag, 13: ...
+                                                  15);
+outdata(tmpflag, 10:12) = outdata(tmpflag, 10:12)./scale_ratios(tmpflag, ...
+                                                  :).*outdata(tmpflag, 13: ...
+                                                  15);
+tmpflag = prange>=1.0 & prange<=60;
 outdata = outdata(tmpflag, :);
 fid = fopen(fullfile(refinedoutdir, [refinedoutfile(1:end-4), '_for_calest.txt']), 'w');
 str = [];
@@ -634,15 +743,14 @@ ebh = nan(numpanels-1, 1);
 for pnum=1:numpanels-1
     x = rg_mean(:, pnum);
     y = int_mean(:, pnum);
-    %wireint = tzeroI_mean(:, pnum);
-    tmpflag = x~=0 & y~=0;
+    wireint = tzeroI_mean(:, pnum);
+    tmpflag = x>=5.9 & y~=0;
     if sum(tmpflag)==0
         continue
     end
-    %wireint = wireint(tmpflag);
-    %scale_ratio = baseint./wireint;
+    wireint = wireint(tmpflag);
+    scale_ratio = baseint./wireint;
     x = x(tmpflag);
-    scale_ratio = ones(size(x));
     y = y(tmpflag) .* scale_ratio;
 
     [x, ind] = sort(x);
@@ -653,7 +761,7 @@ for pnum=1:numpanels-1
 end
 xlabel('Range');
 ylabel('intensity after pre-processing, scaled, normalized by reflectance');
-%axis([0,70,0,1000]);
+axis([0,70,0,1000]);
 title(['Panel returns 20140812 at 1548 nm, laser power variation corrected, ' ...
        'normalized by reflectance']);
 legend(ebh, 'Lambertian panel', 'Gray panel 1', 'Gray panel 2');
@@ -669,7 +777,7 @@ ebh = nan(numpanels-1, 1);
 for pnum=1:numpanels-1
     x = rg_mean(:, pnum);
     y = int_mean(:, pnum);
-    tmpflag = x~=0 & y~=0;
+    tmpflag = x>=5.9 & y~=0;
     if sum(tmpflag)==0
         continue
     end
@@ -690,7 +798,7 @@ for pnum=1:numpanels-1
 end
 xlabel('Range');
 ylabel('intensity after pre-processing, not scaled, normalized by reflectance');
-%axis([0,70,0,1000]);
+axis([0,70,0,1000]);
 title('Panel returns 20140812 at 1548 nm, normalized by reflectance');
 legend(ebh, 'Lambertian panel', 'Gray panel 1', 'Gray panel 2');
 export_fig(fullfile(refinedoutdir, [refinedoutfile(1:end-4), '_refl_normalized_3p.png']), ...
@@ -777,7 +885,7 @@ export_fig(fullfile(refinedoutdir, [refinedoutfile(1:end-4), '_refl_normalized_3
 % allrefls = repmat(panelrefl, numfiles, 1);
 % figure();
 % markerstr = {'or', 'og', 'ob'};
-% ebh = nan(numpanels-1, 1);
+% ebh=nan(numpanels-1, 1);
 % for pnum=1:numpanels-1
 %     tmpflag = rg_mean(:, pnum)~=0 & scaled_int_mean(:, pnum)~=0;
 %     tmpx = log(rg_mean(tmpflag, pnum));
@@ -786,27 +894,27 @@ export_fig(fullfile(refinedoutdir, [refinedoutfile(1:end-4), '_refl_normalized_3
 %     ebh(pnum) = plot(tmpx, tmpy, markerstr{pnum});
 %     hold on;
 % end
-% xlabel('ln(r)');
-% ylabel('ln(rho) - ln(Pr)');
+% xlabel('$\ln(r)$', 'Interpreter','LaTex');
+% ylabel('$\ln(\rho) - \ln(P_r)$', 'Interpreter','LaTex');
 % title('Logorithm of lidar equation for DWEL 1548 nm');
 % legend(ebh, 'Lambertian panel', 'Gray panel 1', 'Gray panel 2');
 % export_fig(fullfile(refinedoutdir, [refinedoutfile(1:end-4), '_log_lidar_eq.png']), ...
-%            '-png','-r300','-painters')
+%       '-png','-r300','-painters');
 
-% % from the first plot, we can tell beyond 10 meters, the K(r) plateaus to 1
+
+% % from the first plot, we can tell beyond 15 meters, the K(r) plateaus to 1
 % % where the plot shows a nice straight line
 % % Let's see what is the slope of this line
-% kdrange = 13;
+% kdrange = 15;
 % figure();
 % markerstr = {'or', 'og', 'ob'};
 % allpf = [];
 % alltmpx = [];
 % alltmpy = [];
-% ebh = nan(4, 1);
-% allrsq = zeros(numpanels-1, 1);
+% ebh = nan(4, 1)
+% allrsq = zeros(numpanels-1, 1)
 % for pnum=1:numpanels-1
-%     tmpflag = rg_mean(:, pnum)~=0 & scaled_int_mean(:, pnum)~=0 & (rg_mean(:, ...
-%                                                       pnum)<34.5 | rg_mean(:, pnum)>40.5);
+%     tmpflag = rg_mean(:, pnum)~=0 & scaled_int_mean(:, pnum)~=0;
 %     tmpx = log(rg_mean(tmpflag, pnum));
 %     tmpy = log(allrefls(tmpflag, pnum)) - log(scaled_int_mean(tmpflag, pnum));
     
@@ -842,9 +950,10 @@ export_fig(fullfile(refinedoutdir, [refinedoutfile(1:end-4), '_refl_normalized_3
 % pf = polyfit(alltmpx, alltmpy, 1);
 % % calculate r-square
 % rsq = 1- sum((alltmpy - polyval(pf, alltmpx)).^2)/((length(alltmpy)-1)*var(alltmpy));
-% fprintf('All panels: slope = %.6f, intercept = %.6f, r-square = %.6f\n', pf(1), pf(2), rsq);
+% fprintf('All panels: slope = %.6f, intercept = %.6f, r-square = %.6f\n', ...
+%         pf(1), pf(2), rsq);
 % % plot the results
-% xsample = (kdrange):0.1:max(exp(alltmpx));
+% xsample = kdrange:0.1:max(exp(alltmpx));
 % xsample = log(xsample);
 % hold on;
 % ebh(4) = plot(xsample, polyval(pf, xsample), '-k');
@@ -856,8 +965,7 @@ export_fig(fullfile(refinedoutdir, [refinedoutfile(1:end-4), '_refl_normalized_3
 %                     'y=%.3f*x+%.3f'], allrsq(2), allpf(2, 1), allpf(2, 2)), ...
 %        sprintf('Gray 2, r^2=%.3f, y=%.3f*x+%.3f', allrsq(3), allpf(3, ...
 %                                                   1), allpf(3, 2)), sprintf(['gray ' ...
-%                     '1 + gray 2, r^2=%.3f, y=%.3f*x+%.3f'], rsq, pf(1), pf(2)), ...
-%        'Location', 'southoutside');
+%                     '1 + gray 2, r^2=%.3f, y=%.3f*x+%.3f'], rsq, pf(1), pf(2)), 'Location', 'southoutside');
 % export_fig(fullfile(refinedoutdir, [refinedoutfile(1:end-4), '_log_lidar_eq_fitting.png']), ...
 %       '-png','-r300','-painters');
 
@@ -868,7 +976,7 @@ export_fig(fullfile(refinedoutdir, [refinedoutfile(1:end-4), '_refl_normalized_3
 % b = pf(1);
 % kd = zeros(numfiles, numpanels);
 % markerstr = {'or', 'og', 'ob'};
-% ebh = nan(numpanels -1, 1);
+% ebh = nan(numpanels-1, 1);
 % figure();
 % for pnum = 1:numpanels-1
 %     tmpflag = rg_mean(:, pnum)~=0 & scaled_int_mean(:, pnum)~=0;

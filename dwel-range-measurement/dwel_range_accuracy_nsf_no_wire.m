@@ -17,8 +17,8 @@
 % input point cloud file
 
 inptsfile1 = ['/projectnb/echidna/lidar/DWEL_Processing/DWEL_TestCal/bu-rslab-' ...
-             'panel-test-20141118/gray1/waveform_2014-11-18-19-39_gray1_1064_cube_bsfix_pxc_update_atp_ptcl_points.txt'];
-inptsfile2 = '/projectnb/echidna/lidar/DWEL_Processing/DWEL_TestCal/bu-rslab-panel-test-20141118/gray2/waveform_2014-11-18-19-25_gray2_1064_cube_bsfix_pxc_update_atp_ptcl_points.txt';
+             'panel-test-20141118/gray1/waveform_2014-11-18-19-39_gray1_1064_cube_bsfix_pxc_update_atp_sievefac8_ptcl_points.txt'];
+inptsfile2 = '/projectnb/echidna/lidar/DWEL_Processing/DWEL_TestCal/bu-rslab-panel-test-20141118/gray2/waveform_2014-11-18-19-25_gray2_1064_cube_bsfix_pxc_update_atp_sievefac8_ptcl_points.txt';
 inwireptsfile = '/projectnb/echidna/lidar/DWEL_Processing/DWEL_TestCal/cal-nsf-20140812/cal-nsf-20140812-panel-returns-summary/cal-nsf-20140812-panel-return-refined/cal_nsf_20140812_7_1064_cube_bsfix_pxc_update_ptcl_points_panel_returns_refined.txt';
 wavelength = 1064;
 
@@ -42,10 +42,10 @@ end
 
 % the boundary of the sample/line index in AT projection image for panel
 % returns
-samplebound1 = [393, 402];
-linebound1 = [261, 375]; % gray panel 1
-samplebound2 = [393, 402];
-linebound2 = [116, 228]; % gray panel 2
+samplebound1 = [393*2, 402*2];
+linebound1 = [261*2, 375*2]; % gray panel 1
+samplebound2 = [393*2, 402*2];
+linebound2 = [116*2, 228*2]; % gray panel 2
 
 nboot = 20000;
 
@@ -57,7 +57,7 @@ dwel_tag = 'NSF';
 
 % read point cloud data
 fid = fopen(inptsfile1, 'r');
-data = textscan(fid, repmat('%f', 1, 15), 'HeaderLines', 3, 'Delimiter', ',');
+data = textscan(fid, repmat('%f', 1, 17), 'HeaderLines', 3, 'Delimiter', ',');
 fclose(fid);
 data = cell2mat(data);
 % find those panel returns
@@ -66,7 +66,7 @@ tmpflag = data(:, 13) > samplebound1(1) & data(:, 13) < samplebound1(2) & data(:
                                                   14) < linebound1(2);
 selectdata1 = data(tmpflag, :);
 fid = fopen(inptsfile2, 'r');
-data = textscan(fid, repmat('%f', 1, 15), 'HeaderLines', 3, 'Delimiter', ',');
+data = textscan(fid, repmat('%f', 1, 17), 'HeaderLines', 3, 'Delimiter', ',');
 fclose(fid);
 data = cell2mat(data);
 % find those panel returns
@@ -81,6 +81,7 @@ selectdata2 = data(tmpflag, :);
 if sum(selectdata1(:, 6)>1)
     fprintf(['Warning: multiple returns from waveforms supposedly from panel 1!\nThe ' ...
              'assessment results might overestimate the error!\n']);
+    selectdata1 = selectdata1(selectdata1(:,6)==1, :);
 end
 if sum(selectdata2(:, 6)>1)
     fprintf(['Warning: multiple returns from waveforms supposedly from panel ' ...
