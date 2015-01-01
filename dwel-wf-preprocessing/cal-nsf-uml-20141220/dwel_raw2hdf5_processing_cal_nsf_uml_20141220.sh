@@ -5,7 +5,7 @@
 #$ -N dwel-raw2hdf5-processing-cal-nsf-uml-20141220
 #$ -V
 #$ -m ae
-#$ -t 1-35
+#$ -t 1-34
 
 WFBINFILES=( \
 "/projectnb/echidna/lidar/Data_DWEL_TestCal/cal-nsf-uml-20141220/0.5/waveform_2014-12-20-11-22" \
@@ -51,7 +51,6 @@ ENCBINFILES=( \
 "/projectnb/echidna/lidar/Data_DWEL_TestCal/cal-nsf-uml-20141220/10/encoder_2010-01-01-02-04-37" \
 "/projectnb/echidna/lidar/Data_DWEL_TestCal/cal-nsf-uml-20141220/11/encoder_2010-01-01-02-21-42" \
 "/projectnb/echidna/lidar/Data_DWEL_TestCal/cal-nsf-uml-20141220/12/encoder_2010-01-01-02-32-37" \
-"/projectnb/echidna/lidar/Data_DWEL_TestCal/cal-nsf-uml-20141220/13/encoder_2010-01-01-02-32-37" \
 "/projectnb/echidna/lidar/Data_DWEL_TestCal/cal-nsf-uml-20141220/13/encoder_2010-01-01-02-35-24" \
 "/projectnb/echidna/lidar/Data_DWEL_TestCal/cal-nsf-uml-20141220/14/encoder_2010-01-01-02-47-47" \
 "/projectnb/echidna/lidar/Data_DWEL_TestCal/cal-nsf-uml-20141220/15/encoder_2010-01-01-03-03-14" \

@@ -11,7 +11,7 @@ import numpy as np
 import h5py
 import matplotlib
 import matplotlib.pyplot as plt
-matplotlib.use('Agg')
+# matplotlib.use('Agg')
 plt.ioff()
 
 
