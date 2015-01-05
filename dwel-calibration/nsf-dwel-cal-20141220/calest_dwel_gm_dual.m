@@ -8,14 +8,15 @@
 
 clear;
 % load calibration data
-datafile1064 = '/home/zhanli/Workspace/data/dwel-processing/dwel-testcal/cal-nsf-uml-20141220/cal_nsf_uml_20141220_stats_1064.txt';
-datafile1548 = '/home/zhanli/Workspace/data/dwel-processing/dwel-testcal/cal-nsf-uml-20141220/cal_nsf_uml_20141220_stats_1548.txt';
+datafile1064 = '/projectnb/echidna/lidar/DWEL_Processing/DWEL_TestCal/cal-nsf-uml-20141220/cal_nsf_uml_20141220_stats_1064.txt';
+datafile1548 = '/projectnb/echidna/lidar/DWEL_Processing/DWEL_TestCal/cal-nsf-uml-20141220/cal_nsf_uml_20141220_stats_1548.txt';
 
 fid = fopen(datafile1064, 'r');
 data = textscan(fid, repmat('%f',1,10), 'HeaderLines', 1, 'Delimiter', ',');
 fclose(fid);
 data = cell2mat(data);
 data1064 = [data(:, 3), data(:, 1), data(:, 5)];
+clear data;
 
 fid = fopen(datafile1548, 'r');
 data = textscan(fid, repmat('%f',1,10), 'HeaderLines', 1, 'Delimiter', ',');
@@ -37,7 +38,7 @@ objfunc = calest_dwel_gm_dual_objfunc(data1064, data1548);
 % We have 9 parameters in total now. 
 lb = [0, 0, 0, 0, 0, 0, 0, 0, 1];
 ub = [Inf, Inf, Inf, Inf, Inf, Inf, Inf, Inf, 3];
-p0 = [446210, 6580.330, 0.3553, 43.396, 358970, ...
+p0 = [414276.86, 6580.330, 0.3553, 43.396, 317608.34, ...
        4483.089, 0.7317, 19.263, 1.9056];
 options = gaoptimset('PopInitRange', [p0*0.5; p0*1.5], 'Generations', 100*length(lb)*5);
 [fitp, fval] = ga(objfunc, 9, [], [], [], [], lb, ub, [], options)

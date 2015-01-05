@@ -42,17 +42,17 @@ from sherpa.fit import Fit
 wavelength = 1548
 
 if wavelength == 1064:
-  CalFileName = '/projectnb/echidna/lidar/DWEL_Processing/DWEL_TestCal/cal-nsf-20140812/cal-nsf-20140812-wire-removed-panel-returns-summary/cal-nsf-20140812-wire-removed-panel-returns-refined-summary/cal_nsf_20140812_wire_removed_panel_returns_refined_stats_1064_for_calest.txt';
+  CalFileName = '/projectnb/echidna/lidar/DWEL_Processing/DWEL_TestCal/cal-nsf-uml-20141220/cal_nsf_uml_20141220_stats_1064.txt';
   panelrefl = np.array([0.987,0.5741,0.4313,0.041])
 else:
-  CalFileName = '/projectnb/echidna/lidar/DWEL_Processing/DWEL_TestCal/cal-nsf-20140812/cal-nsf-20140812-wire-removed-panel-returns-summary/cal-nsf-20140812-wire-removed-panel-returns-refined-summary/cal_nsf_20140812_wire_removed_panel_returns_refined_stats_1548_for_calest.txt';
+  CalFileName = '/projectnb/echidna/lidar/DWEL_Processing/DWEL_TestCal/cal-nsf-uml-20141220/cal_nsf_uml_20141220_stats_1548.txt';
   panelrefl = np.array([0.984,0.4472,0.3288,0.041])
 
 # number of panels in the input csv filel
 numpanels = 3
 
 # the file name for writing calibration fitting results.
-outputfilename = 'CalibrationEst_Output_NSF_20140812_'+str(wavelength)+'.txt'
+outputfilename = 'CalibrationEst_Output_NSF_20141220_'+str(wavelength)+'.txt'
 # end of inputs section
 # ******************************************************************************
 
@@ -70,42 +70,15 @@ caldata = np.array(caldata)
 # prepare four vectors for fitting calibration models:
 # ranges, reflectances, return intensity in DN and standard deviation of return
 # power in DN.
-npts = caldata.size
-for c in range(0, 4):
-  tmpnpts = np.count_nonzero(caldata[:,c*numpanels+np.arange(0,numpanels)])
-  if tmpnpts < npts:
-    npts = tmpnpts
-ranges = np.zeros(npts)
-refls = np.zeros(npts)
-ret_ints = np.zeros(npts)
-ret_ints_sd = np.zeros(npts)
+npts = caldata.shape[0]
+ranges = caldata[:,2]
+refls = caldata[:,0]
+ret_ints = caldata[:,4]
+ret_ints_sd = caldata[:,5]
 panelind = np.zeros(npts)
-rangeind = np.zeros(npts)
-ptsind = 0
 for p in range(0, numpanels):
-  for r in range(0, caldata.shape[0]):
-    tmprg = caldata[r, p]
-    tmpint = caldata[r, p+6]
-    tmpint_sd = caldata[r, p+9]
-    if tmprg != 0 and tmpint !=0 and tmpint_sd !=0:
-      ranges[ptsind] = tmprg
-      refls[ptsind] = panelrefl[p]
-      ret_ints[ptsind] = tmpint
-      ret_ints_sd[ptsind] = tmpint_sd
-      panelind[ptsind] = p
-      rangeind[ptsind] = r
-      ptsind = ptsind + 1
-    if ptsind >= npts:
-      break
+  panelind[refls==panelrefl[p]] = p  
 
-# tmpflag = panelind != 0
-# ranges = ranges[tmpflag]
-# refls = refls[tmpflag]
-# ret_ints = ret_ints[tmpflag]
-# ret_ints_sd = ret_ints_sd[tmpflag]
-# panelind = panelind[tmpflag]
-# rangeind = rangeind[tmpflag]
-    
 # remove some not-so-good data points according to log analysis of far range
 # data.
 oldranges = ranges
@@ -113,31 +86,13 @@ oldrefls = refls
 oldret_ints = ret_ints
 oldret_ints_sd = ret_ints_sd
 oldpanelind = panelind
-oldrangeind = rangeind
 
-# if wavelength == 1548:
-#   tmpflag = np.logical_or(np.logical_or(panelind == 0, ranges<6.0), np.logical_and(ranges > 34.5, ranges < 40.5))
-# else:
-#   tmpflag = np.logical_or(panelind == 0, ranges<6.0)
-
-if wavelength == 1548:
-  # tmpflag = np.logical_or(panelind == 0, np.logical_and(ranges > 34.5, ranges < 40.5))
-  tmpflag = np.logical_and(ranges > 34.5, ranges < 40.5)
-else:
-  tmpflag = panelind == 4
-  
-ranges = ranges[np.logical_not(tmpflag)]
-refls = refls[np.logical_not(tmpflag)]
-ret_ints = ret_ints[np.logical_not(tmpflag)]
-ret_ints_sd = ret_ints_sd[np.logical_not(tmpflag)]
-panelind = panelind[np.logical_not(tmpflag)]
-rangeind = rangeind[np.logical_not(tmpflag)]
 if wavelength == 1064:
-  b0 = 1.856080 # 2 
-  c0 = np.exp(10.557476) # 58590.853
+  b0 = 2 
+  c0 = 446210
 if wavelength == 1548:
-  b0 = 1.588007 #1.620258# 2 
-  c0 = np.exp(10.26548) #np.exp(10.257597) # 102950.366 
+  b0 = 2
+  c0 = 358970
 
 # end of data preparation
 # ******************************************************************************
@@ -149,10 +104,10 @@ if wavelength == 1548:
 # plot P_r*d^2/rho against range, this should be the curve of telescope
 # efficiency scaled by a calibration constant
 c_kd = ret_ints * ranges**2 / refls
-#fig2 = plt.figure()
+# fig2 = plt.figure()
 tmpind = np.argsort(ranges)
-#plt.plot(ranges[tmpind], c_kd[tmpind], '-o')
-#plt.show(block=False)
+# plt.plot(ranges[tmpind], c_kd[tmpind], '-o')
+# plt.show()
 # ******************************************************************************
 #import pdb; pdb.set_trace();
     
@@ -405,7 +360,7 @@ for p in range(0, numpanels):
 
 plt.xlim(xlim_plt)
 plt.ylim(ylim_plt)
-plt.legend(prop={'size':8})
+# plt.legend(prop={'size':8})
 plt.xlabel("Range",fontsize=10)
 plt.ylabel("ADU after preprocessing and laser power variation correction",fontsize=10)
 plt.title('Ewan_2 model, $P_r ='
@@ -436,7 +391,7 @@ plt.plot([tmpmin, tmpmax], [tmpmin, tmpmax], linestyle='-', color='red',
 plt.axis('equal')
 plt.xlabel('measured return intensity')
 plt.ylabel('modeled return intensity')
-plt.legend(prop={'size':8}, loc='lower right')
+plt.legend(loc='lower right')
 plt.title('Scatter plot between measured and modeled')
 plt.savefig('Scatter_plot_modeled_return_intensity_Ewan_dwel_2_nsf_20140812_'+str(wavelength)+'.png')
 #plt.show(block=False)
@@ -478,7 +433,7 @@ for p in range(0, numpanels):
   
 plt.xlim(xlim_plt)
 plt.ylim(ylim_plt)
-plt.legend(prop={'size':8})
+# plt.legend(prop={'size':8})
 plt.xlabel("Range",fontsize=10)
 plt.ylabel("ADU after preprocessing and laser power variation correction",fontsize=10)
 plt.title('EVI_b model, $P_r = \\frac{C_0*\\rho}{r^b}*(1-\\exp(-\\frac{r^2}{C_k}))$, NSF 20140812, '+str(wavelength)+' nm')
@@ -509,7 +464,7 @@ plt.plot([tmpmin, tmpmax], [tmpmin, tmpmax], linestyle='-', color='red',
 plt.axis('equal')
 plt.xlabel('measured return intensity')
 plt.ylabel('modeled return intensity')
-plt.legend(prop={'size':8}, loc='lower right')
+plt.legend(loc='lower right')
 plt.title('Scatter plot between measured and modeled')
 plt.savefig('Scatter_plot_modeled_return_intensity_evi_b_nsf_20140812_'+str(wavelength)+'.png')
 
@@ -547,7 +502,7 @@ for p in range(0, numpanels):
   
 plt.xlim(xlim_plt)
 plt.ylim(ylim_plt)
-plt.legend(prop={'size':8})
+# plt.legend(prop={'size':8})
 plt.xlabel("Range",fontsize=10)
 plt.ylabel("ADU after preprocessing and laser power variation correction",fontsize=10)
 plt.title('EVI_2 model, $P_r = \\frac{C_0*\\rho}{r^2}*(1-\\exp(-\\frac{r^2}{C_k}))$, NSF 20140812, '+str(wavelength)+' nm')
@@ -578,7 +533,7 @@ plt.plot([tmpmin, tmpmax], [tmpmin, tmpmax], linestyle='-', color='red',
 plt.axis('equal')
 plt.xlabel('measured return intensity')
 plt.ylabel('modeled return intensity')
-plt.legend(prop={'size':8}, loc='lower right')
+plt.legend(loc='lower right')
 plt.title('Scatter plot between measured and modeled')
 plt.savefig('Scatter_plot_modeled_return_intensity_evi_2_nsf_20140812_'+str(wavelength)+'.png')
 
@@ -616,7 +571,7 @@ for p in range(0, numpanels):
   
 plt.xlim(xlim_plt)
 plt.ylim(ylim_plt)
-plt.legend(prop={'size':8})
+# plt.legend(prop={'size':8})
 plt.xlabel("Range",fontsize=10)
 plt.ylabel("ADU after preprocessing and laser power variation correction",fontsize=10)
 plt.title('Ewan_b DWEL model, $P_r ='
@@ -648,7 +603,7 @@ plt.plot([tmpmin, tmpmax], [tmpmin, tmpmax], linestyle='-', color='red',
 plt.axis('equal')
 plt.xlabel('measured return intensity')
 plt.ylabel('modeled return intensity')
-plt.legend(prop={'size':8}, loc='lower right')
+plt.legend(loc='lower right')
 plt.title('Scatter plot between measured and modeled')
 plt.savefig('Scatter_plot_modeled_return_intensity_dwel_b_nsf_20140812_'+str(wavelength)+'.png')
 
@@ -685,7 +640,7 @@ for p in range(0, numpanels):
            alpha=0.8, color=colorstr[p], label="DWEL from growth modelling SIX param fit w/ b, w/o bg const")  
 plt.xlim(xlim_plt)
 plt.ylim(ylim_plt)
-plt.legend(prop={'size':8})
+# plt.legend(prop={'size':8})
 plt.xlabel("Range",fontsize=10)
 plt.ylabel("ADU after preprocessing and laser power variation correction",fontsize=10)
 plt.title('David_GM model, $P_r = \\frac{C_0*\\rho}{r^b}*\\frac{1}{(1+C_1*\\exp(-C_2*(r+C_3)))^C_4}$, NSF 20140812, '+str(wavelength)+' nm')
@@ -717,7 +672,7 @@ plt.plot([tmpmin, tmpmax], [tmpmin, tmpmax], linestyle='-', color='red',
 plt.axis('equal')
 plt.xlabel('measured return intensity')
 plt.ylabel('modeled return intensity')
-plt.legend(prop={'size':8}, loc='lower right')
+plt.legend(loc='lower right')
 plt.title('Scatter plot between measured and modeled')
 plt.savefig('Scatter_plot_modeled_return_intensity_dwel_gm_nsf_20140812_'+str(wavelength)+'.png')
 
@@ -783,7 +738,7 @@ plt.plot(rg_samples, evi_kd_model, linestyle='-', color='green', label="EVI empi
 plt.plot(rg_samples, dwel_kd_gm_model, linestyle=':', color='blue',
          label="David kd model from growth modelling"+"$R^2=$"+str(dwel_kd_gm_rsq))
 plt.plot([0, np.max(rg_samples)], [1, 1], '--k')
-plt.legend(prop={'size':8}, loc='lower right')
+plt.legend(loc='lower right')
 plt.title('DWEL K_d separate fit, NSF 20140812, '+str(wavelength)+' nm')
 plt.savefig('dwel_Kd_nsf_20140812_'+str(wavelength)+'.png')
 
@@ -822,7 +777,7 @@ for p in range(0, numpanels):
            color=colorstr[p], label=pnamestr[p]+", David GM  k_d separate fit")
 plt.xlim(xlim_plt)
 plt.ylim(ylim_plt)
-plt.legend(prop={'size':8})
+# plt.legend(prop={'size':8})
 plt.xlabel("Range",fontsize=10)
 plt.ylabel("ADU after preprocessing and laser power variation correction",fontsize=10)
 plt.title('DWEL Calibration model, K_d separate fit, NSF 20140812, '+str(wavelength)+' nm')
@@ -893,7 +848,7 @@ plt.plot([tmpmin, tmpmax], [tmpmin, tmpmax], linestyle='-', color='black')
 plt.axis('equal')
 plt.xlabel('measured return intensity')
 plt.ylabel('modeled return intensity')
-plt.legend(prop={'size':8}, loc='lower right')
+plt.legend(loc='lower right')
 plt.title('Scatter plot between measured and modeled')
 plt.savefig('Scatter_plot_modeled_return_intensity_dwel_kd_sep_fit_nsf_20140812_'+str(wavelength)+'.png')
 

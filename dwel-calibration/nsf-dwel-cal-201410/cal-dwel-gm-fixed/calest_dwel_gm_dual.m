@@ -104,38 +104,32 @@ end
 tmpflag = meandata1548(:, 1)~=0;
 meandata1548 = meandata1548(tmpflag, :);
 
-% % spline fit directly to return intensity and use interpolated
-% % values to fit calibration curve. 
-% datax = meandata1064(:, 1);
-% datay = meandata1064(:, 3);
-% pp1064 = splinefit(datax, datay, [min(datax), 3.5, ...
-%                     6.5, 12, 20, max(datax)], 'r');
-% x = [min(datax):0.05:4, 4.05:0.5:max(datax)]; x = x';
-% %x = datax;
-% %x = 1:0.5:30;
-% y = ppval(pp1064, x);
-% figure();
-% plot(datax, datay, '.');
-% hold on;
-% plot(x, y, '.r');
-% % fit calibration curve
-% %p0 = [38445.6, 6580.330, 0.3553, 43.396, 2];
-% p0 = [16873, 6580.330, 0.3553, 43.396, 1.6853];
-% [fitp1064_sp, exit1064_sp] = dwel_gm_single_fit([x, ones(size(x)), ...
-%                     y], p0, true)
-% plot(meandata1064(:,1), meandata1064(:,3), 'ok')
+% % fit the two lasers jointly, failed again!
+% % use power fit to far range points to get initial values of C0 and
+% % b. 
+% [powerfit1064, ~] = dwel_power_single_fit(meandata1064(meandata1064(:,1)>29.75,:), ...
+%                       [38445.6, 2], false);
+% [powerfit1548, ~] = dwel_power_single_fit(meandata1548(meandata1548(:,1)>19.75,:), ...
+%                       [28701, 2], false);
+% p0 = [powerfit1064(1), 1, 0.5, 50, powerfit1548(1), 1, 0.5, 50, 2];
+% fitpdualarr = zeros(nreps, 10);
+% for n=1:nreps
+%   [fitpdual, exitdual] = dwel_gm_dual_fit(meandata1064, meandata1548, p0, ...
+%                                             true, false);
+%   fitpdualarr(n, :) = [fitpdual, exitdual];
+%   p0 = fitpdual;
+% end
+% p0 = median(fitpdualarr(fitpdualarr(:,10)==1, 1:9), 1);
+% exitdual = 0;
+% while ~exitdual
+%     [fitpdual, exitdual, fvaldual] = dwel_gm_dual_fit(meandata1064, meandata1548, p0, ...
+%                                               true, false);
+% end
+% % end of fit two lasers jointly
 
-% p0 = [38445.6, 6580.330, 0.3553, 43.396, 28701, ...
-%        4483.089, 0.7317, 19.263, 1.9056];
-% fitp = dwel_gm_dual_fit(meandata1064, meandata1548, p0)
-
-% use power fit to far range points to get initial values of C0 and
-% b. 
-[powerfit1064, ~] = dwel_power_single_fit(meandata1064(meandata1064(:,1)>19.75,:), ...
+[powerfit1064, ~] = dwel_power_single_fit(meandata1064(meandata1064(:,1)>29.75,:), ...
                       [38445.6, 2], false);
-% p0 = [38445.6, 6580.330, 0.3553, 43.396, 2];
-p0 = [powerfit1064(1), 6580.330, 0.3553, 43.396, powerfit1064(2)];
-
+p0 = [powerfit1064(1), 1, 0.5, 10, powerfit1064(2)];
 fitp1064arr = zeros(nreps, 6);
 for n=1:nreps
   [fitp1064, exit1064] = dwel_gm_single_fit(meandata1064, p0, ...
@@ -207,8 +201,7 @@ export_fig('cal_dwel_gm_20140812_1064_raw_data_scatter_plot.png', '-r300', ...
 % b. 
 [powerfit1548, ~] = dwel_power_single_fit(meandata1548(meandata1548(:,1)>19.75,:), ...
                       [28701, 2], false);
-% p0 = [38445.6, 6580.330, 0.3553, 43.396, 2];
-p0 = [powerfit1548(1), 6580.330, 0.3553, 43.396, powerfit1548(2)];
+p0 = [powerfit1548(1), 1, 0.5, 10, powerfit1548(2)];
 
 fitp1548arr = zeros(nreps, 6);
 for n=1:nreps
@@ -277,5 +270,19 @@ legend(['R^2=', num2str(r2)], ['slope=', num2str(p(1)), ', intercept=', ...
 export_fig('cal_dwel_gm_20140812_1548_raw_data_scatter_plot.png', '-r300', ...
            '-png', '-painters');
 
-% p0 = [28701, 4483.089, 0.7317, 19.263, 2];
-% [fitp1548, exit1548] = dwel_gm_single_fit(meandata1548, p0, true)
+% plot telescope efficiency curve
+x1064 = 1:0.5:40;
+x1548 = 1:0.5:40;
+figure();
+plot(x1064, gm_func(x1064, fitp1064(2), fitp1064(3), fitp1064(4), ...
+                    1/fitp1064(2)), '-b');
+hold on;
+plot(x1548, gm_func(x1548, fitp1548(2), fitp1548(3), fitp1548(4), ...
+                    1/fitp1548(2)), '-r');
+title(sprintf(['20140812, telescope efficiency curve, both ' ...
+               'wavelengths']));
+xlabel('range');
+ylabel('K(r)');
+legend('1064 K(r) curve', '1548 K(r) curve');
+export_fig('cal_dwel_gm_20140812_telescope_eff.png', '-r300', ...
+           '-png', '-painters');

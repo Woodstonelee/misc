@@ -1,0 +1,4 @@
+exitflag,error,wavelength,c0,c1/c4,c2,c3,b
+1,0.038,1548,19242.474,0.072,0.527,4.113,1.551
+exitflag,error,wavelength,c0,c1/c4,c2,c3,b
+1,0.038,1548,19242.474,0.072,0.527,4.113,1.551

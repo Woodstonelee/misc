@@ -1,0 +1,107 @@
+Fitting to EVI model, four parameters (C_0, b, C_k, C_b), NSF stationary scan 20140812:
+Method                = moncar
+Statistic             = chi2datavar
+Initial fit statistic = 6.22126e+08
+Final fit statistic   = 4754.6 at function evaluation 4062
+Data points           = 77
+Degrees of freedom    = 74
+Probability [Q-value] = 0
+Reduced statistic     = 64.2513
+Change in statistic   = 6.22122e+08
+   EVI.amplitude   30685.9     
+   EVI.b          1.13288     
+   EVI.Ck         22.833      
+Fitting to alternate EVI model, three parameters (C_0, C_k, C_b), NSF stationary scan 20140812:
+Method                = moncar
+Statistic             = chi2datavar
+Initial fit statistic = 6.22126e+08
+Final fit statistic   = 18149 at function evaluation 1060
+Data points           = 77
+Degrees of freedom    = 75
+Probability [Q-value] = 0
+Reduced statistic     = 241.987
+Change in statistic   = 6.22108e+08
+   EVI_alt.amplitude   558460      
+   EVI_alt.Ck     276.726     
+Fitting to DWEL model, four parameters (C_0, C_1, C_2_C_3), NSF stationary scan 20140812:
+Method                = moncar
+Statistic             = chi2datavar
+Initial fit statistic = 6.79286e+07
+Final fit statistic   = 18361.1 at function evaluation 3940
+Data points           = 77
+Degrees of freedom    = 74
+Probability [Q-value] = 0
+Reduced statistic     = 248.122
+Change in statistic   = 6.79102e+07
+   DWEL.C0        670898      
+   DWEL.C1        4.06634e+18 
+   DWEL.C2        2.21324e+17 
+Fitting to alternate DWEL model, five parameters (C_0, C_1, C_2, C_3, b), NSF stationary scan 20140812:
+Method                = moncar
+Statistic             = chi2datavar
+Initial fit statistic = 6.79286e+07
+Final fit statistic   = 4754.83 at function evaluation 8041
+Data points           = 77
+Degrees of freedom    = 73
+Probability [Q-value] = 0
+Reduced statistic     = 65.1347
+Change in statistic   = 6.79239e+07
+   DWEL_alt.C0    30979.1     
+   DWEL_alt.C1    8.67633e+14 
+   DWEL_alt.C2    1.80812e+14 
+   DWEL_alt.b     1.13647     
+Fitting to DWEL model from growth modelling, SIX parameters(C_0, C_1, C_2, C_3, C_4, b), NSF stationary scan 20140812:Method                = moncar
+Statistic             = chi2datavar
+Initial fit statistic = 7.68902e+08
+Final fit statistic   = 22151.1 at function evaluation 7731
+Data points           = 77
+Degrees of freedom    = 71
+Probability [Q-value] = 0
+Reduced statistic     = 311.988
+Change in statistic   = 7.6888e+08
+   DWEL_GM.C0     0.258807    
+   DWEL_GM.C1     13.6305     
+   DWEL_GM.C2     0.00564552  
+   DWEL_GM.C3     289.176     
+   DWEL_GM.C4     -6.92451    
+   DWEL_GM.b      7.67842e-08 
+WARNING: parameter value DWEL_GM.b is at its minimum boundary 0.0
+
+K_d separate fit
+Ewan kd
+Method                = moncar
+Statistic             = chi2datavar
+Initial fit statistic = 139.539
+Final fit statistic   = 0.779708 at function evaluation 1752
+Data points           = 77
+Degrees of freedom    = 75
+Probability [Q-value] = 1
+Reduced statistic     = 0.0103961
+Change in statistic   = 138.76
+   DWEL_K_d.C1    37.4024     
+   DWEL_K_d.C2    4.76169     
+EVI kd
+Method                = moncar
+Statistic             = chi2datavar
+Initial fit statistic = 449.613
+Final fit statistic   = 1.01005 at function evaluation 287
+Data points           = 77
+Degrees of freedom    = 76
+Probability [Q-value] = 1
+Reduced statistic     = 0.0132901
+Change in statistic   = 448.603
+   EVI_K_d.C1     86.6397     
+David GM kd
+Method                = moncar
+Statistic             = chi2datavar
+Initial fit statistic = 12.5105
+Final fit statistic   = 0.970602 at function evaluation 7183
+Data points           = 77
+Degrees of freedom    = 73
+Probability [Q-value] = 1
+Reduced statistic     = 0.0132959
+Change in statistic   = 11.5399
+   DWEL_K_d_GM.C1   5.64458     
+   DWEL_K_d_GM.C2   0.267944    
+   DWEL_K_d_GM.C3   29.5525     
+   DWEL_K_d_GM.C4   2571.67     
