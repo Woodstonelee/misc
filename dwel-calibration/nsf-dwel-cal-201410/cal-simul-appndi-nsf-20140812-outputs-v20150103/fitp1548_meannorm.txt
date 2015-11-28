@@ -1,0 +1,54 @@
+exitflag,error,wavelength,c0,c1/c4,c2,c3,b,run_time
+1,0.310,1548,14207.522,12.125,0.641,4.486,1.451,19-Feb-2015 13:17:05
+exitflag,error,wavelength,c0,c1/c4,c2,c3,b,run_time
+1,4.500,1548,10127.814,1.184,1.191,-3.278,1.308,09-Mar-2015 16:36:27
+exitflag,error,wavelength,c0,c1/c4,c2,c3,b,run_time
+1,0.227,1548,14636.205,2.183,0.848,-1.933,1.439,09-Mar-2015 16:42:56
+exitflag,error,wavelength,c0,c1/c4,c2,c3,b,run_time
+1,0.227,1548,14637.990,11.227,0.847,2.183,1.439,09-Mar-2015 20:12:10
+exitflag,error,wavelength,c0,c1/c4,c2,c3,b,run_time
+1,0.231,1548,22388.425,0.000,0.508,29034.285,1.586,09-Mar-2015 20:41:11
+exitflag,error,wavelength,c0,c1/c4,c2,c3,b,run_time
+1,0.231262,1548,22386.891481,0.000797,0.507991,9300.763409,1.586119,09-Mar-2015 20:46:47
+exitflag,error,wavelength,c0,c1/c4,c2,c3,b,run_time
+1,0.231254,1548,22386.402871,0.000965,0.508006,7687.133507,1.586112,09-Mar-2015 20:52:53
+exitflag,error,wavelength,c0,c1/c4,c2,c3,b,run_time
+1,5.502,1548,5489.625,3.476,0.914,0.485,1.045,09-Mar-2015 21:18:16
+exitflag,error,wavelength,c0,c1/c4,c2,c3,b,run_time
+1,0.000,1548,5210.903,3.604,0.946,1.196,1.029,09-Mar-2015 21:21:12
+exitflag,error,wavelength,c0,c1/c4,c2,c3,b,run_time
+1,0.000,1548,7147.262,2.603,1.035,0.059,1.176,09-Mar-2015 21:30:55
+exitflag,error,wavelength,c0,c1/c4,c2,c3,b,run_time
+1,0.017,1548,5209.446,2.409,0.998,0.270,1.031,09-Mar-2015 21:36:49
+exitflag,error,wavelength,c0,c1/c4,c2,c3,b,run_time
+1,0.022,1548,11309.923,4.017,1.164,0.699,1.375,09-Mar-2015 21:39:11
+exitflag,error,wavelength,c0,c1/c4,c2,c3,b,run_time
+1,0.000,1548,18813.839,3.958,0.886,0.375,1.464,09-Mar-2015 21:41:37
+exitflag,error,wavelength,c0,c1/c4,c2,c3,b,run_time
+1,0.000,1548,21641.254,3.361,0.789,0.238,1.584,09-Mar-2015 21:44:16
+exitflag,error,wavelength,c0,c1/c4,c2,c3,b,run_time
+1,0.229,1548,14893.872,2.610,0.800,-1.357,1.444,09-Mar-2015 21:47:47
+exitflag,error,wavelength,c0,c1/c4,c2,c3,b,run_time
+1,0.257,1548,15599.216,7.573,0.653,2.559,1.455,09-Mar-2015 21:55:40
+exitflag,error,wavelength,c0,c1/c4,c2,c3,b,run_time
+1,0.227,1548,14636.390,2.164,0.849,-1.961,1.439,09-Mar-2015 22:03:31
+exitflag,error,wavelength,c0,c1/c4,c2,c3,b,run_time
+1,0.227,1548,14637.759,2.183,0.847,-1.933,1.439,16-Mar-2015 20:19:27
+exitflag,error,wavelength,c0,c1/c4,c2,c3,b,run_time
+1,0.181,1548,14283.982,1.662,0.941,-2.735,1.432,16-Mar-2015 20:22:32
+exitflag,error,wavelength,c0,c1/c4,c2,c3,b,run_time
+1,0.227,1548,14637.953,2.183,0.847,-1.932,1.439,16-Mar-2015 20:31:22
+exitflag,error,wavelength,c0,c1,c2,c3,b,run_time
+1,0.227,1548,14637.788,11.230,0.847,2.183,1.439,16-Mar-2015 20:45:52
+exitflag,error,wavelength,c0,c1,c2,c3,b,run_time
+1,0.227,1548,14638.059737,11.221258,0.847385,2.183760,1.439309,16-Mar-2015 20:51:26
+exitflag,error,wavelength,c0,c1,c2,c3,b,run_time
+1,0.227,1548,14638.090149,11.217974,0.847348,2.184045,1.439309,16-Mar-2015 21:24:01
+exitflag,error,wavelength,c0,c1,c2,c3,b,run_time
+1,0.191,1548,22053.454161,0.000593,0.540785,13533.609453,1.585974,17-Mar-2015 18:12:27
+exitflag,error,wavelength,c0,c1,c2,c3,b,run_time
+1,0.191,1548,22050.895715,0.001948,0.540883,4121.338430,1.585936,17-Mar-2015 18:15:30
+exitflag,error,wavelength,c0,c1,c2,c3,b,run_time
+1,0.191210,1548,22054.249741,0.000286,0.540760,28078.408699,1.585986,17-Mar-2015 18:19:03
+exitflag,error,wavelength,c0,c1,c2,c3,b,run_time
+1,0.191210,1548,22054.218342,0.000319,0.540762,25176.835032,1.585985,17-Mar-2015 18:32:22

@@ -1,0 +1,6 @@
+exitflag,error,wavelength,c0,c1/c4,c2,c3,b,run_time
+1,0.299,1548,39443.354,2716.670,0.447,31.167,1.492,18-Feb-2015 14:23:30
+exitflag,error,wavelength,c0,c1/c4,c2,c3,b,run_time
+1,0.299,1548,39462.497,5994.089,0.447,34.728,1.492,18-Feb-2015 14:51:27
+exitflag,error,wavelength,c0,c1/c4,c2,c3,b,run_time
+1,0.299,1548,39465.105,15714.494,0.447,39.048,1.492,18-Feb-2015 15:05:41

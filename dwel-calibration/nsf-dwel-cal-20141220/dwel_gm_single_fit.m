@@ -31,7 +31,7 @@ function [fitp, exitflag, fval] = dwel_gm_single_fit(data, p0, gaflag, plotflag)
     % We have 9 parameters in total now. 
     lb = [0, 0, 0, 0, 1];
     ub = [Inf, Inf, Inf, Inf, 3];
-    options = gaoptimset('PopInitRange', [p0*0.5; p0*1.5], 'Generations', 100*length(lb)*10);
+    options = gaoptimset('PopInitRange', [p0-abs(p0)*0.5; p0+abs(p0)*0.5], 'Generations', 100*length(lb)*10);
     [fitp, fval, exitflag] = ga(objfunc, 5, [], [], [], [], lb, ub, [], options)
 
     % p0 = fitp;

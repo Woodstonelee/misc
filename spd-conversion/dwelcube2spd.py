@@ -1,4 +1,4 @@
-#! /project/earth/packages/Python-2.7.5/bin python
+#!/usr/bin/env python
 """
 Create an SPD file from a DWEL scan cube file
 John Armston, j.armston@uq.edu.au
@@ -19,24 +19,17 @@ import numpy as np
 from osgeo import gdal
 # On GEO server after module load newer python or gdal version, the PYTHONPATH will be overwritten now
 # To avoid the loss of the path to spdpy in the PYTHONPATH, include your own python package path here.
-sys.path.append('/usr3/graduate/zhanli86/lib64/python2.6/site-packages')
+#sys.path.append('/usr3/graduate/zhanli86/lib64/python2.6/site-packages')
 import spdpy
 import envi_header
 
-'''
-Before use the gdal functions to open ENVI data cube for the first time, 
-you need to register the ENVI data format with the following two functions
-driver=gdal.GetDriverByName('ENVI')
-driver.Register()
-Once you've done it once, no need to do it second time. 
-'''
-        
+gdal.AllRegister()
+
 def main(cmdargs):
     # debugging
     # import pdb; pdb.set_trace()
     
     driver=gdal.GetDriverByName('ENVI')
-    driver.Register()
     """
     Read a DWEL ENVI file and write to SPD
     """    
@@ -46,6 +39,7 @@ def main(cmdargs):
     
     # Get basic metadata from the ENVI .hdr file
     metaStr = ads.GetMetadata('')
+    import pdb; pdb.set_trace()
     # Get the ENVI header file name
     tmpstr = cmdargs.ancillaryfile.rsplit('.')
     if os.path.isfile(tmpstr[0]+'.hdr'):
@@ -187,8 +181,8 @@ def main(cmdargs):
 class CmdArgs:
   def __init__(self):
     p = optparse.OptionParser()
-    p.add_option("-c","--cubefile", dest="cubefile", default=None, help="Input DWEL scan cube ENVI file")
-    p.add_option("-a","--ancillaryfile", dest="ancillaryfile", default=None, help="Input DWEL ancillary ENVI file")
+    p.add_option("-c","--cubefile", dest="cubefile", default="/projectnb/echidna/lidar/DWEL_Processing/HF2014/Hardwood20140919/HFHD_20140919_C/HFHD_20140919_C_1548_cube.img", help="Input DWEL scan cube ENVI file")
+    p.add_option("-a","--ancillaryfile", dest="ancillaryfile", default="/projectnb/echidna/lidar/DWEL_Processing/HF2014/Hardwood20140919/HFHD_20140919_C/HFHD_20140919_C_1548_cube_ancillary.img", help="Input DWEL ancillary ENVI file")
     p.add_option("-o","--outfile", dest="outfile", default="dwel_test.spd", help="Output SPD filename")
     (options, args) = p.parse_args()
     self.__dict__.update(options.__dict__)

@@ -1,0 +1,14 @@
+exitflag,error,wavelength,c0,c1/c4,c2,c3,b
+1,10.270,1548,421.739,6.416,180.140,30.629,0.351
+exitflag,error,wavelength,c0,c1/c4,c2,c3,b
+1,0.020,1548,59675.365,1202.302,0.276,46.693,1.617
+exitflag,error,wavelength,c0,c1/c4,c2,c3,b
+1,1.003,1548,27050.476,5.874,0.997,-0.659,1.391
+exitflag,error,wavelength,c0,c1/c4,c2,c3,b
+1,13.596,1548,450.674,7.642,213.216,91.842,0.354
+exitflag,error,wavelength,c0,c1/c4,c2,c3,b
+1,1.002,1548,27020.410,5.851,0.998,-0.669,1.391
+exitflag,error,wavelength,c0,c1/c4,c2,c3,b
+1,0.299,1548,39461.384,8489.044,0.447,36.286,1.492
+exitflag,error,wavelength,c0,c1/c4,c2,c3,b
+1,0.299,1548,39463.981,11200.689,0.447,37.530,1.492

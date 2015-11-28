@@ -1,7 +1,7 @@
 This is a collection of code files for various data processing, manipulation and
 analysis or simply for fun by Zhan Li, zhanli86@bu.edu. 
 
-Its name 'misc' does Not mean these code files are not important. Think TWICE
+Its name 'misc' does **NOT** mean these code files are not important. Think TWICE
 before you try to delete or clean some file. They might be super important to
 Zhan Li's work. 
 

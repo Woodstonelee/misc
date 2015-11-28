@@ -273,7 +273,8 @@ ANCHSPROJFILENAME=${BASEFILENAME}_${EXTENSION}
 EXTENSION="bsfix.img"
 BSFIXFILENAME=${BASEFILENAME}_${EXTENSION}
 # dwel_baseline_sat_fix_cmd_nsf, DWELCubeFile, ancillaryfile_name, out_satfix_name, Casing_Range, get_info_stats, zen_tweak, err
-$IDL "envi, /restore_base_save_files & envi_batch_init, /no_status_window & dwel_baseline_sat_fix_cmd_nsf, '${CUBEFILES[$SGE_TASK_ID-1]}', '$ANCFILENAME', '$BSFIXFILENAME', [170, 180], 1, 0, err_flag"
+# $IDL "envi, /restore_base_save_files & envi_batch_init, /no_status_window & dwel_baseline_sat_fix_cmd_nsf, '${CUBEFILES[$SGE_TASK_ID-1]}', '$ANCFILENAME', '$BSFIXFILENAME', [170, 180], 1, 0, err_flag"
+$IDL "!EXCEPT=2 & envi, /restore_base_save_files & envi_batch_init, /no_status_window & dwel_baseline_sat_fix_cmd_nsf, '${CUBEFILES[$SGE_TASK_ID-1]}', '$ANCFILENAME', '$BSFIXFILENAME', [175, 180], 'lam', 1, 0, err_flag, settings={out_of_pulse:400}"
 
 EXTENSION="bsfix_ancillary.img"
 BSFIXANCFILENAME=${BASEFILENAME}_${EXTENSION}

@@ -13,6 +13,8 @@
 %
 % set _wavelength_ to the wavelength we are interested. Create data set names
 % and file names. _wavelength_=1548 actually reads 1064 data, vice versa. 
+clear;
+
 wavelength = 1548;
 wfsetname = ['/', num2str(wavelength), ' Waveform Data'];
 
@@ -24,9 +26,8 @@ wfsetname = ['/', num2str(wavelength), ' Waveform Data'];
 % transient noise in the extraction of a baseline. 
 
 % the input HDF5 file name of noise returns
-wirehdf5filename = ['/projectnb/echidna/lidar/Data_DWEL_TestCal/' ...
-                  'Calibration_NSFDWEL_20140812/WireSamples/waveform_2014-' ...
-                    '08-12-12-12.hdf5'];
+%wirehdf5filename = '/projectnb/echidna/lidar/Data_DWEL_TestCal/Calibration_NSFDWEL_20140812/WireSamples/waveform_2014-08-12-12-12.hdf5';
+wirehdf5filename = '/projectnb/echidna/lidar/Data_DWEL_TestCal/Calibration_NSFDWEL_20140812/NoiseSamples/waveform_2014-08-12-11-57.hdf5';
 % read waveform data
 noisewf = single(h5read(wirehdf5filename, wfsetname));
 numwf = size(noisewf, 2);

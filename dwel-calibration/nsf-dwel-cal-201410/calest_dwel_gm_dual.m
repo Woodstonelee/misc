@@ -10,8 +10,8 @@ clear;
 % load calibration data
 %load('calest_dwel_data_nsf_20140812.mat');
 
-datafile1064 = '/projectnb/echidna/lidar/DWEL_Processing/DWEL_TestCal/cal-nsf-20140812/cal-nsf-20140812-wire-removed-panel-returns-summary/cal-nsf-20140812-wire-removed-panel-returns-refined-summary/cal_nsf_20140812_wire_removed_panel_returns_refined_stats_1064_for_calest.txt';
-datafile1548 = '/projectnb/echidna/lidar/DWEL_Processing/DWEL_TestCal/cal-nsf-20140812/cal-nsf-20140812-wire-removed-panel-returns-summary/cal-nsf-20140812-wire-removed-panel-returns-refined-summary/cal_nsf_20140812_wire_removed_panel_returns_refined_stats_1548_for_calest.txt';
+normdata1064file = '/projectnb/echidna/lidar/DWEL_Processing/DWEL_TestCal/cal-nsf-20140812/cal-nsf-20140812-wire-removed-panel-returns-summary/cal-nsf-20140812-wire-removed-panel-returns-refined-summary/cal-nsf-20140812-wire-removed-panel-returns-fitting/cal_nsf_20140812_wire_removed_panel_returns_refined_norm_mean_1064_fitting.txt';
+normdata1548file = '/projectnb/echidna/lidar/DWEL_Processing/DWEL_TestCal/cal-nsf-20140812/cal-nsf-20140812-wire-removed-panel-returns-summary/cal-nsf-20140812-wire-removed-panel-returns-refined-summary/cal-nsf-20140812-wire-removed-panel-returns-fitting/cal_nsf_20140812_wire_removed_panel_returns_refined_norm_mean_1548_fitting.txt';
 
 refl1064 = [0.987, 0.5741, 0.4313];
 refl1548 = [0.984, 0.4472, 0.3288];
