@@ -10,3 +10,7 @@ temp*
 *.pe*
 *.po*
 *.png
+*.jpg
+*.jpeg
+*.tif
+*.tiff
