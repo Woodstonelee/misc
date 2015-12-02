@@ -14,3 +14,8 @@ temp*
 *.jpeg
 *.tif
 *.tiff
+
+# files created by compilation and build
+**/build/
+**/debug/
+**/release/
