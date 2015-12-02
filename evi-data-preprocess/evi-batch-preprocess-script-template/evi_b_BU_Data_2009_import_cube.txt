@@ -1,0 +1,176 @@
+[import]
+;import batch runs for EVI basic reprocessing of BU data in 2009
+n_case=64
+Run_Desc='EVI reprocessing in July 2012 of BU data in 2009 - import EVI files to Cubes'
+log_file='C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\evi_b_BU_Data_2009_Import_Cubes.log'
+;log file has record of processing
+;
+;Input EVI files
+datafile=[ $
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Harvard_EMSTower\EMSTower_4mradStep_5mradBeam_ND015_Scan_01_N.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Harvard_EMSTower\EMSTower_4mradStep_5mradBeam_ND015_Scan_02_NE.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Harvard_EMSTower\EMSTower_4mradStep_5mradBeam_ND015_Scan_03_E.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Harvard_EMSTower\EMSTower_4mradStep_5mradBeam_ND015_Scan_04_SE.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Harvard_EMSTower\EMSTower_4mradStep_5mradBeam_ND015_Scan_05_S.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Harvard_EMSTower\EMSTower_4mradStep_5mradBeam_ND015_Scan_06_SW.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Harvard_EMSTower\EMSTower_4mradStep_5mradBeam_ND015_Scan_07_Centre.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Harvard_EMSTower\EMSTower_4mradStep_5mradBeam_ND015_Scan_08_W.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Harvard_EMSTower\EMSTower_4mradStep_5mradBeam_ND015_Scan_09_NW.evi',$
+$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Harvard_Hemlock\HarvardHemlock_4mradStep_5mradBeam_ND015_Scan_01_Centre.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Harvard_Hemlock\HarvardHemlock_4mradStep_5mradBeam_ND015_Scan_02_NE.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Harvard_Hemlock\HarvardHemlock_4mradStep_5mradBeam_ND015_Scan_03_SE.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Harvard_Hemlock\HarvardHemlock_4mradStep_5mradBeam_ND015_Scan_04_S.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Harvard_Hemlock\HarvardHemlock_4mradStep_5mradBeam_ND015_Scan_05_SW.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Harvard_Hemlock\HarvardHemlock_4mradStep_5mradBeam_ND015_Scan_06_W.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Harvard_Hemlock\HarvardHemlock_4mradStep_5mradBeam_ND015_Scan_07_NW.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Harvard_Hemlock\HarvardHemlock_4mradStep_5mradBeam_ND015_Scan_08_N.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Harvard_Hemlock\HarvardHemlock_4mradStep_5mradBeam_ND015_Scan_09_E.evi',$
+$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Bartlett_sugarmaple\Bartlett_sugarmaple_4mradStep_5mradBeam_ND015_Scan_01_CN.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Bartlett_sugarmaple\Bartlett_sugarmaple_4mradStep_5mradBeam_ND015_Scan_02_NW.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Bartlett_sugarmaple\Bartlett_sugarmaple_4mradStep_5mradBeam_ND015_Scan_03_NE.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Bartlett_sugarmaple\Bartlett_sugarmaple_4mradStep_5mradBeam_ND015_Scan_04_SE.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Bartlett_sugarmaple\Bartlett_sugarmaple_4mradStep_5mradBeam_ND015_Scan_05_S.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Bartlett_sugarmaple\Bartlett_sugarmaple_4mradStep_5mradBeam_ND015_Scan_06_W.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Bartlett_sugarmaple\Bartlett_sugarmaple_4mradStep_5mradBeam_ND015_Scan_07_N.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Bartlett_sugarmaple\Bartlett_sugarmaple_4mradStep_5mradBeam_ND015_Scan_08_E.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Bartlett_sugarmaple\Bartlett_sugarmaple_4mradStep_5mradBeam_ND015_Scan_09_SW.evi',$
+$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Bartlett_tower\Bartletttower_4mradStep_5mradBeam_ND015_Scan_01_E.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Bartlett_tower\Bartletttower_4mradStep_5mradBeam_ND015_Scan_02_SE.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Bartlett_tower\Bartletttower_4mradStep_5mradBeam_ND015_Scan_03_NE.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Bartlett_tower\Bartletttower_4mradStep_5mradBeam_ND015_Scan_04_N.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Bartlett_tower\Bartletttower_4mradStep_5mradBeam_ND015_Scan_05_CN.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Bartlett_tower\Bartletttower_4mradStep_5mradBeam_ND015_Scan_06_S.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Bartlett_tower\Bartletttower_4mradStep_5mradBeam_ND015_Scan_07_SW.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Bartlett_tower\Bartletttower_4mradStep_5mradBeam_ND015_Scan_08_W.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Bartlett_tower\Bartletttower_4mradStep_5mradBeam_ND015_Scan_09_NW.evi',$
+$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Howland_Shelterwood\HowlandShelterwood_4mradStep_5mradBeam_ND015_Scan_01_NW.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Howland_Shelterwood\HowlandShelterwood_4mradStep_5mradBeam_ND015_Scan_01a_NW.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Howland_Shelterwood\HowlandShelterwood_4mradStep_5mradBeam_ND015_Scan_02_N.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Howland_Shelterwood\HowlandShelterwood_4mradStep_5mradBeam_ND015_Scan_03_NE.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Howland_Shelterwood\HowlandShelterwood_4mradStep_5mradBeam_ND015_Scan_04_Centre.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Howland_Shelterwood\HowlandShelterwood_4mradStep_5mradBeam_ND015_Scan_05_E.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Howland_Shelterwood\HowlandShelterwood_4mradStep_5mradBeam_ND015_Scan_06_W.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Howland_Shelterwood\HowlandShelterwood_4mradStep_5mradBeam_ND015_Scan_07_SW.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Howland_Shelterwood\HowlandShelterwood_4mradStep_5mradBeam_ND015_Scan_08_S.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Howland_Shelterwood\HowlandShelterwood_4mradStep_5mradBeam_ND015_Scan_09_SE.evi',$
+$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Howland_ShelterwoodAndrew\HowlandShelterwoodAndrew_4mradStep_5mradBeam_ND015_Scan_01_S.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Howland_ShelterwoodAndrew\HowlandShelterwoodAndrew_4mradStep_5mradBeam_ND015_Scan_02_SW.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Howland_ShelterwoodAndrew\HowlandShelterwoodAndrew_4mradStep_5mradBeam_ND015_Scan_03_W.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Howland_ShelterwoodAndrew\HowlandShelterwoodAndrew_4mradStep_5mradBeam_ND015_Scan_04_NW.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Howland_ShelterwoodAndrew\HowlandShelterwoodAndrew_4mradStep_5mradBeam_ND015_Scan_05_N.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Howland_ShelterwoodAndrew\HowlandShelterwoodAndrew_4mradStep_5mradBeam_ND015_Scan_06_NE.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Howland_ShelterwoodAndrew\HowlandShelterwoodAndrew_4mradStep_5mradBeam_ND015_Scan_07_E.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Howland_ShelterwoodAndrew\HowlandShelterwoodAndrew_4mradStep_5mradBeam_ND015_Scan_08_Centre.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\Howland_ShelterwoodAndrew\HowlandShelterwoodAndrew_4mradStep_5mradBeam_ND015_Scan_09_SE.evi',$
+$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\BatBarn\BatBarn_4mradStep_5mradBeam_ND015_Scan_01_NW.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\BatBarn\BatBarn_4mradStep_5mradBeam_ND015_Scan_02_W.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\BatBarn\BatBarn_4mradStep_5mradBeam_ND015_Scan_03_Centre.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\BatBarn\BatBarn_4mradStep_5mradBeam_ND015_Scan_04_E.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\BatBarn\BatBarn_4mradStep_5mradBeam_ND015_Scan_05_SE.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\BatBarn\BatBarn_4mradStep_5mradBeam_ND015_Scan_06_NE.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\BatBarn\BatBarn_4mradStep_5mradBeam_ND015_Scan_07_N.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\BatBarn\BatBarn_4mradStep_5mradBeam_ND015_Scan_08_S.evi',$
+'C:\WorkSpace\LiDAR\EVI_Raw_Data\Data_2009\BatBarn\BatBarn_4mradStep_5mradBeam_ND015_Scan_09_SW.evi'$
+]
+;the outfiles are the same except they have _cube suffix and are called .img files
+;output files put into a folder called \import
+outfile=[ $
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Harvard_EMSTower\EMSTower_4mradStep_5mradBeam_ND015_Scan_01_N_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Harvard_EMSTower\EMSTower_4mradStep_5mradBeam_ND015_Scan_02_NE_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Harvard_EMSTower\EMSTower_4mradStep_5mradBeam_ND015_Scan_03_E_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Harvard_EMSTower\EMSTower_4mradStep_5mradBeam_ND015_Scan_04_SE_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Harvard_EMSTower\EMSTower_4mradStep_5mradBeam_ND015_Scan_05_S_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Harvard_EMSTower\EMSTower_4mradStep_5mradBeam_ND015_Scan_06_SW_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Harvard_EMSTower\EMSTower_4mradStep_5mradBeam_ND015_Scan_07_Centre_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Harvard_EMSTower\EMSTower_4mradStep_5mradBeam_ND015_Scan_08_W_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Harvard_EMSTower\EMSTower_4mradStep_5mradBeam_ND015_Scan_09_NW_cube.img',$
+$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Harvard_Hemlock\HarvardHemlock_4mradStep_5mradBeam_ND015_Scan_01_Centre_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Harvard_Hemlock\HarvardHemlock_4mradStep_5mradBeam_ND015_Scan_02_NE_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Harvard_Hemlock\HarvardHemlock_4mradStep_5mradBeam_ND015_Scan_03_SE_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Harvard_Hemlock\HarvardHemlock_4mradStep_5mradBeam_ND015_Scan_04_S_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Harvard_Hemlock\HarvardHemlock_4mradStep_5mradBeam_ND015_Scan_05_SW_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Harvard_Hemlock\HarvardHemlock_4mradStep_5mradBeam_ND015_Scan_06_W_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Harvard_Hemlock\HarvardHemlock_4mradStep_5mradBeam_ND015_Scan_07_NW_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Harvard_Hemlock\HarvardHemlock_4mradStep_5mradBeam_ND015_Scan_08_N_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Harvard_Hemlock\HarvardHemlock_4mradStep_5mradBeam_ND015_Scan_09_E_cube.img',$
+$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Bartlett_sugarmaple\Bartlett_sugarmaple_4mradStep_5mradBeam_ND015_Scan_01_CN_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Bartlett_sugarmaple\Bartlett_sugarmaple_4mradStep_5mradBeam_ND015_Scan_02_NW_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Bartlett_sugarmaple\Bartlett_sugarmaple_4mradStep_5mradBeam_ND015_Scan_03_NE_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Bartlett_sugarmaple\Bartlett_sugarmaple_4mradStep_5mradBeam_ND015_Scan_04_SE_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Bartlett_sugarmaple\Bartlett_sugarmaple_4mradStep_5mradBeam_ND015_Scan_05_S_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Bartlett_sugarmaple\Bartlett_sugarmaple_4mradStep_5mradBeam_ND015_Scan_06_W_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Bartlett_sugarmaple\Bartlett_sugarmaple_4mradStep_5mradBeam_ND015_Scan_07_N_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Bartlett_sugarmaple\Bartlett_sugarmaple_4mradStep_5mradBeam_ND015_Scan_08_E_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Bartlett_sugarmaple\Bartlett_sugarmaple_4mradStep_5mradBeam_ND015_Scan_09_SW_cube.img',$
+$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Bartlett_tower\Bartletttower_4mradStep_5mradBeam_ND015_Scan_01_E_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Bartlett_tower\Bartletttower_4mradStep_5mradBeam_ND015_Scan_02_SE_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Bartlett_tower\Bartletttower_4mradStep_5mradBeam_ND015_Scan_03_NE_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Bartlett_tower\Bartletttower_4mradStep_5mradBeam_ND015_Scan_04_N_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Bartlett_tower\Bartletttower_4mradStep_5mradBeam_ND015_Scan_05_CN_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Bartlett_tower\Bartletttower_4mradStep_5mradBeam_ND015_Scan_06_S_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Bartlett_tower\Bartletttower_4mradStep_5mradBeam_ND015_Scan_07_SW_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Bartlett_tower\Bartletttower_4mradStep_5mradBeam_ND015_Scan_08_W_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Bartlett_tower\Bartletttower_4mradStep_5mradBeam_ND015_Scan_09_NW_cube.img',$
+$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Howland_Shelterwood\HowlandShelterwood_4mradStep_5mradBeam_ND015_Scan_01_NW_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Howland_Shelterwood\HowlandShelterwood_4mradStep_5mradBeam_ND015_Scan_01a_NW_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Howland_Shelterwood\HowlandShelterwood_4mradStep_5mradBeam_ND015_Scan_02_N_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Howland_Shelterwood\HowlandShelterwood_4mradStep_5mradBeam_ND015_Scan_03_NE_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Howland_Shelterwood\HowlandShelterwood_4mradStep_5mradBeam_ND015_Scan_04_Centre_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Howland_Shelterwood\HowlandShelterwood_4mradStep_5mradBeam_ND015_Scan_05_E_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Howland_Shelterwood\HowlandShelterwood_4mradStep_5mradBeam_ND015_Scan_06_W_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Howland_Shelterwood\HowlandShelterwood_4mradStep_5mradBeam_ND015_Scan_07_SW_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Howland_Shelterwood\HowlandShelterwood_4mradStep_5mradBeam_ND015_Scan_08_S_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Howland_Shelterwood\HowlandShelterwood_4mradStep_5mradBeam_ND015_Scan_09_SE_cube.img',$
+$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Howland_ShelterwoodAndrew\HowlandShelterwoodAndrew_4mradStep_5mradBeam_ND015_Scan_01_S_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Howland_ShelterwoodAndrew\HowlandShelterwoodAndrew_4mradStep_5mradBeam_ND015_Scan_02_SW_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Howland_ShelterwoodAndrew\HowlandShelterwoodAndrew_4mradStep_5mradBeam_ND015_Scan_03_W_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Howland_ShelterwoodAndrew\HowlandShelterwoodAndrew_4mradStep_5mradBeam_ND015_Scan_04_NW_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Howland_ShelterwoodAndrew\HowlandShelterwoodAndrew_4mradStep_5mradBeam_ND015_Scan_05_N_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Howland_ShelterwoodAndrew\HowlandShelterwoodAndrew_4mradStep_5mradBeam_ND015_Scan_06_NE_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Howland_ShelterwoodAndrew\HowlandShelterwoodAndrew_4mradStep_5mradBeam_ND015_Scan_07_E_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Howland_ShelterwoodAndrew\HowlandShelterwoodAndrew_4mradStep_5mradBeam_ND015_Scan_08_Centre_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\Howland_ShelterwoodAndrew\HowlandShelterwoodAndrew_4mradStep_5mradBeam_ND015_Scan_09_SE_cube.img',$
+$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\BatBarn\BatBarn_4mradStep_5mradBeam_ND015_Scan_01_NW_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\BatBarn\BatBarn_4mradStep_5mradBeam_ND015_Scan_02_W_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\BatBarn\BatBarn_4mradStep_5mradBeam_ND015_Scan_03_Centre_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\BatBarn\BatBarn_4mradStep_5mradBeam_ND015_Scan_04_E_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\BatBarn\BatBarn_4mradStep_5mradBeam_ND015_Scan_05_SE_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\BatBarn\BatBarn_4mradStep_5mradBeam_ND015_Scan_06_NE_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\BatBarn\BatBarn_4mradStep_5mradBeam_ND015_Scan_07_N_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\BatBarn\BatBarn_4mradStep_5mradBeam_ND015_Scan_08_S_cube.img',$
+'C:\WorkSpace\LiDAR\evi_b_4_processed_data\Data_2009\BatBarn\BatBarn_4mradStep_5mradBeam_ND015_Scan_09_SW_cube.img'$
+]
+;
+;NOTE: need one for each case.
+ND_Filter=[ $
+1,1,1,1,1,1,1,1,1, $
+1,1,1,1,1,1,1,1,1, $
+1,1,1,1,1,1,1,1,1, $
+1,1,1,1,1,1,1,1,1, $
+1,1,1,1,1,1,1,1,1,1, $
+1,1,1,1,1,1,1,1,1, $
+1,1,1,1,1,1,1,1,1 $
+]
+EVI_Height=[ $
+1.48,1.46,1.48,1.59,1.58,1.62,1.48,1.44,1.56, $
+1.57,1.61,1.43,1.42,1.55,1.54,1.58,1.54,1.53, $
+1.53,1.48,1.59,1.54,1.61,1.48,1.50,1.54,1.61, $
+1.66,1.54,1.59,1.61,1.35,1.48,1.51,1.53,1.54, $
+1.61,1.61,1.71,1.56,1.59,1.58,1.61,1.62,1.60,1.66, $
+1.55,1.64,1.43,1.52,1.51,1.64,1.63,1.54,1.68, $
+1.69,1.62,1.63,1.63,1.68,1.50,1.58,1.50,1.61, $
+]
+;
+Exit_IDL=0   ;Exit_IDL=0 if you do not wish to close up IDL and ENVI afterwards.

@@ -16,6 +16,9 @@
 clear;
 
 wavelength = 1548;
+
+pulse_model_file = ['./nsf_pulse_model_wl_label_', num2str(wavelength), '.txt'];
+
 wfsetname = ['/', num2str(wavelength), ' Waveform Data'];
 
 %% Establish a baseline for noise removal
@@ -100,8 +103,8 @@ plot(meanpulsemodel, '.b');
 title(['Baseline removed from tube waveform, label: ', num2str(wavelength)]);
 legend('median waveform', 'mean waveform');
 
-fig2plotly(gcf, 'filename', ['Baseline removed from tube waveform label ', ...
-                    num2str(wavelength)], 'open', false);
+% fig2plotly(gcf, 'filename', ['Baseline removed from tube waveform label ', ...
+%                     num2str(wavelength)], 'open', false);
 
 %% Double check if the background is at zero
 % We've noticed that the mean background intensity is not at zero level which
@@ -122,7 +125,7 @@ mdpulsemodel = mdpulsemodel(pind-80:pind+80);
 [pmax, pind] = max(meanpulsemodel);
 meanpulsemodel = meanpulsemodel(pind-80:pind+80);
 % get a mean background and force it to zero. 
-tmpbgl = mean(mdpulsemodel(1:20))
+tmpbgl = mean(mdpulsemodel(1:20));
 tmpbgr = mean(mdpulsemodel(end-19:end));
 slope = (tmpbgr-tmpbgl)/(length(mdpulsemodel)-10-10);
 tmp = (1:length(mdpulsemodel)); tmp = reshape(tmp, size(mdpulsemodel));
@@ -141,8 +144,15 @@ plot(meanpulsemodel, '.b');
 title(['Normalized pulse model, label: ', num2str(wavelength)]);
 legend('median waveform', 'mean waveform');
 
-fig2plotly(gcf, 'filename', ['Normalized pulse model label ', num2str(wavelength)], ...
-           'open', false)
+% fig2plotly(gcf, 'filename', ['Normalized pulse model label ', num2str(wavelength)], ...
+%            'open', false)
+
+% write the pulse model to an ascii file
+fid = fopen(pulse_model_file, 'w');
+fprintf(fid, '// Wavelength label is %d, NOT the actual wavelength\n', wavelength);
+fprintf(fid, 'median_pulse_model,mean_pulse_model\n');
+fprintf(fid, '%.3f,%.3f\n', ([mdpulsemodel(:), meanpulsemodel(:)])');
+fclose(fid);
 
 %% Check the integral of the pulse model
 % The integral of the median pulse model has lower asymtope value because the
@@ -156,5 +166,5 @@ plot(intmeanpulse, '.b');
 title(['Integral of pulse model, label: ', num2str(wavelength)]);
 legend('median waveform', 'mean waveform');
 
-fig2plotly(gcf, 'filename', ['Integral of pulse model label ', num2str(wavelength)], ...
-           'open', false);
+% fig2plotly(gcf, 'filename', ['Integral of pulse model label ', num2str(wavelength)], ...
+%            'open', false);

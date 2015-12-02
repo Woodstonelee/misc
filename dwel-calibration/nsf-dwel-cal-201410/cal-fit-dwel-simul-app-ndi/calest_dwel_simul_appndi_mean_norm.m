@@ -182,7 +182,7 @@ figure();
 [figh, model1064] = dwel_gm_plot(nu_meandata1064, fitp1064);
 title(sprintf(['20140812, 1064, Generalized logistic model fitting to data points \naveraged ' ...
        'at each range locations']));
-export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1064_mean_norm.png'), '-r300', '-png', '-painters');
+export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1064_mean_norm.png'), '-r500', '-png', '-painters');
 figure();
 plot(nu_meandata1064(:, 1), (nu_meandata1064(:,3)-model1064)./nu_meandata1064(:,3), ...
      '.')
@@ -191,7 +191,7 @@ title(sprintf(['20140812, 1064, Errors of generalized logistic model fitting to 
 xlabel('range');
 ylabel('Relative error in return intensity');
 legend('(data - model) / data');
-export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1064_mean_norm_fitting_error.png'), '-r300', '-png', '-painters');
+export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1064_mean_norm_fitting_error.png'), '-r500', '-png', '-painters');
 % plot scatter plot
 p = polyfit(nu_meandata1064(:,3), model1064, 1);
 r2 = rsquare(nu_meandata1064(:,3), model1064);
@@ -210,7 +210,7 @@ xlabel('measured');
 ylabel('modeled');
 legend(['$R^2=$', num2str(r2)], ['slope=', num2str(p(1)), ', intercept=', ...
                    num2str(p(2))], 'Location', 'southeast');
-export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1064_mean_norm_scatter_plot.png'), '-r300', ...
+export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1064_mean_norm_scatter_plot.png'), '-r500', ...
            '-png', '-painters');
 
 % ------------------------------------------------------------------------------
@@ -228,7 +228,7 @@ figure();
 [figh, model1548] = dwel_gm_plot(nu_meandata1548, fitp1548);
 title(sprintf(['20140812, 1548, Generalized logistic model fitting to data points \naveraged ' ...
        'at each range locations']));
-export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1548_mean_norm.png'), '-r300', '-png', '-painters');
+export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1548_mean_norm.png'), '-r500', '-png', '-painters');
 figure();
 plot(nu_meandata1548(:, 1), (nu_meandata1548(:,3)-model1548)./nu_meandata1548(:,3), ...
      '.')
@@ -237,7 +237,7 @@ title(sprintf(['20140812, 1548, Errors of generalized logistic model fitting to 
 xlabel('range');
 ylabel('Relative error in return intensity');
 legend('(data - model) / data');
-export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1548_mean_norm_fitting_error.png'), '-r300', '-png', '-painters');
+export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1548_mean_norm_fitting_error.png'), '-r500', '-png', '-painters');
 % plot scatter plot
 p = polyfit(nu_meandata1548(:,3), model1548, 1);
 r2 = rsquare(nu_meandata1548(:,3), model1548);
@@ -256,5 +256,5 @@ xlabel('measured');
 ylabel('modeled');
 legend(['$R^2=$', num2str(r2)], ['slope=', num2str(p(1)), ', intercept=', ...
                    num2str(p(2))], 'Location', 'southeast');
-export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1548_mean_norm_scatter_plot.png'), '-r300', ...
+export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1548_mean_norm_scatter_plot.png'), '-r500', ...
            '-png', '-painters');

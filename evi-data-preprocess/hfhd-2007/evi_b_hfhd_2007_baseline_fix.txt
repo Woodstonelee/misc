@@ -1,0 +1,32 @@
+[baseline_fix]
+;baseline fix batch runs for Harvard Forest hardwood scans in 2007
+n_case=5
+Run_Desc='EVI reprocessing in 20151104 of Harvard Forest hardwood scans in 2007 - Baseline Fix'
+log_file='/usr3/graduate/zhanli86/Programs/evi-data-preprocess/hfhd-2007/evi_b_hfhd_2007_baseline_fix.log'
+;
+datafile=[ $
+'/projectnb/echidna/lidar/Data_2007Summer/EVI_Data/Harvard_2007/EVI_Raw_Data_Cube/Harvard_Plot1_Hardwood2007/CP/Scan21_HarvFor_Plot01CP_ND015_cube.img',$
+'/projectnb/echidna/lidar/Data_2007Summer/EVI_Data/Harvard_2007/EVI_Raw_Data_Cube/Harvard_Plot1_Hardwood2007/NE/Scan19_HarvFor_Plot01NE_ND015_cube_bil.img',$
+'/projectnb/echidna/lidar/Data_2007Summer/EVI_Data/Harvard_2007/EVI_Raw_Data_Cube/Harvard_Plot1_Hardwood2007/NW/Scan15_HarvFor_Plot01NW_ND015_cube_bil.img',$
+'/projectnb/echidna/lidar/Data_2007Summer/EVI_Data/Harvard_2007/EVI_Raw_Data_Cube/Harvard_Plot1_Hardwood2007/SE/Scan75_Harvard_Plot01SE_ND015_cube_bil.img',$
+'/projectnb/echidna/lidar/Data_2007Summer/EVI_Data/Harvard_2007/EVI_Raw_Data_Cube/Harvard_Plot1_Hardwood2007/SW/Scan17_HarvFor_Plot01SW_ND015_cube_bil.img'$
+]
+;
+ancfile=[ $
+'/projectnb/echidna/lidar/Data_2007Summer/EVI_Data/Harvard_2007/EVI_Raw_Data_Cube/Harvard_Plot1_Hardwood2007/CP/Scan21_HarvFor_Plot01CP_ND015_cube_ancillary.img',$
+'/projectnb/echidna/lidar/Data_2007Summer/EVI_Data/Harvard_2007/EVI_Raw_Data_Cube/Harvard_Plot1_Hardwood2007/NE/Scan19_HarvFor_Plot01NE_ND015_cube_bil_ancillary.img',$
+'/projectnb/echidna/lidar/Data_2007Summer/EVI_Data/Harvard_2007/EVI_Raw_Data_Cube/Harvard_Plot1_Hardwood2007/NW/Scan15_HarvFor_Plot01NW_ND015_cube_bil_ancillary.img',$
+'/projectnb/echidna/lidar/Data_2007Summer/EVI_Data/Harvard_2007/EVI_Raw_Data_Cube/Harvard_Plot1_Hardwood2007/SE/Scan75_Harvard_Plot01SE_ND015_cube_bil_ancillary.img',$
+'/projectnb/echidna/lidar/Data_2007Summer/EVI_Data/Harvard_2007/EVI_Raw_Data_Cube/Harvard_Plot1_Hardwood2007/SW/Scan17_HarvFor_Plot01SW_ND015_cube_bil_ancillary.img'$
+]
+;
+outfile=[ $
+'/projectnb/echidna/lidar/Data_2007Summer/EVI_Data/Harvard_2007/EVI_Raw_Data_Cube/Harvard_Plot1_Hardwood2007/CP/Scan21_HarvFor_Plot01CP_ND015_cube_nu_basefix.img',$
+'/projectnb/echidna/lidar/Data_2007Summer/EVI_Data/Harvard_2007/EVI_Raw_Data_Cube/Harvard_Plot1_Hardwood2007/NE/Scan19_HarvFor_Plot01NE_ND015_cube_nu_basefix.img',$
+'/projectnb/echidna/lidar/Data_2007Summer/EVI_Data/Harvard_2007/EVI_Raw_Data_Cube/Harvard_Plot1_Hardwood2007/NW/Scan15_HarvFor_Plot01NW_ND015_cube_nu_basefix.img',$
+'/projectnb/echidna/lidar/Data_2007Summer/EVI_Data/Harvard_2007/EVI_Raw_Data_Cube/Harvard_Plot1_Hardwood2007/SE/Scan75_Harvard_Plot01SE_ND015_cube_nu_basefix.img',$
+'/projectnb/echidna/lidar/Data_2007Summer/EVI_Data/Harvard_2007/EVI_Raw_Data_Cube/Harvard_Plot1_Hardwood2007/SW/Scan17_HarvFor_Plot01SW_ND015_cube_nu_basefix.img'$
+]
+;
+Exit_IDL=0
+delete_input=0

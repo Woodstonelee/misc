@@ -1,0 +1,37 @@
+[project_at]
+;project_at batch runs for EVI basic reprocessing of Harvard Forest hardwood scans in 2007
+n_case=5
+Run_Desc='EVI reprocessing in 20151104 of Harvard Forest hardwood scans in 2007 - AT projection'
+log_file='/usr3/graduate/zhanli86/Programs/evi-data-preprocess/hfhd-2007/evi_b_hfhd_2007_project_at.log'
+;
+image=[ $
+'/projectnb/echidna/lidar/EVI_Processing/HF2007/hfhd-2007/hfhd-2007-cp/Scan21_HarvFor_Plot01CP_ND015_cube_nu_basefix_nu_satfix_pfilter.img',$
+'/projectnb/echidna/lidar/EVI_Processing/HF2007/hfhd-2007/hfhd-2007-ne/Scan19_HarvFor_Plot01NE_ND015_cube_nu_basefix_nu_satfix_pfilter.img',$
+'/projectnb/echidna/lidar/EVI_Processing/HF2007/hfhd-2007/hfhd-2007-nw/Scan15_HarvFor_Plot01NW_ND015_cube_nu_basefix_nu_satfix_pfilter.img',$
+'/projectnb/echidna/lidar/EVI_Processing/HF2007/hfhd-2007/hfhd-2007-se/Scan75_Harvard_Plot01SE_ND015_cube_nu_basefix_nu_satfix_pfilter.img',$
+'/projectnb/echidna/lidar/EVI_Processing/HF2007/hfhd-2007/hfhd-2007-sw/Scan17_HarvFor_Plot01SW_ND015_cube_nu_basefix_nu_satfix_pfilter.img'$
+]
+;
+anc_name=[ $
+'/projectnb/echidna/lidar/EVI_Processing/HF2007/hfhd-2007/hfhd-2007-cp/Scan21_HarvFor_Plot01CP_ND015_cube_nu_basefix_nu_satfix_ancillary.img',$
+'/projectnb/echidna/lidar/EVI_Processing/HF2007/hfhd-2007/hfhd-2007-ne/Scan19_HarvFor_Plot01NE_ND015_cube_nu_basefix_nu_satfix_ancillary.img',$
+'/projectnb/echidna/lidar/EVI_Processing/HF2007/hfhd-2007/hfhd-2007-nw/Scan15_HarvFor_Plot01NW_ND015_cube_nu_basefix_nu_satfix_ancillary.img',$
+'/projectnb/echidna/lidar/EVI_Processing/HF2007/hfhd-2007/hfhd-2007-se/Scan75_Harvard_Plot01SE_ND015_cube_nu_basefix_nu_satfix_ancillary.img',$
+'/projectnb/echidna/lidar/EVI_Processing/HF2007/hfhd-2007/hfhd-2007-sw/Scan17_HarvFor_Plot01SW_ND015_cube_nu_basefix_nu_satfix_ancillary.img'$
+]
+;
+outfile=[ $
+'/projectnb/echidna/lidar/EVI_Processing/HF2007/hfhd-2007/hfhd-2007-cp/Scan21_HarvFor_Plot01CP_ND015_cube_nu_basefix_nu_satfix_pfilter_at_project.img',$
+'/projectnb/echidna/lidar/EVI_Processing/HF2007/hfhd-2007/hfhd-2007-ne/Scan19_HarvFor_Plot01NE_ND015_cube_nu_basefix_nu_satfix_pfilter_at_project.img',$
+'/projectnb/echidna/lidar/EVI_Processing/HF2007/hfhd-2007/hfhd-2007-nw/Scan15_HarvFor_Plot01NW_ND015_cube_nu_basefix_nu_satfix_pfilter_at_project.img',$
+'/projectnb/echidna/lidar/EVI_Processing/HF2007/hfhd-2007/hfhd-2007-se/Scan75_Harvard_Plot01SE_ND015_cube_nu_basefix_nu_satfix_pfilter_at_project.img',$
+'/projectnb/echidna/lidar/EVI_Processing/HF2007/hfhd-2007/hfhd-2007-sw/Scan17_HarvFor_Plot01SW_ND015_cube_nu_basefix_nu_satfix_pfilter_at_project.img'$
+]
+;
+output_resolution=[ $
+5.0, 5.0, 5.0, 5.0, 5.0]
+Max_Zenith_Angle=[ $
+125.0, 125.0, 125.0, 125.0, 125.0]
+;
+Exit_IDL=0
+delete_input=0

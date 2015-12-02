@@ -1,0 +1,33 @@
+[satfix_new]
+;saturation fix batch runs for EVI basic reprocessing of Harvard Forest hardwood scans in 2007
+n_case=5
+Run_Desc='EVI reprocessing in 20151104 of Harvard Forest hardwood scans in 2007 - saturation fix'
+log_file='/usr3/graduate/zhanli86/Programs/evi-data-preprocess/hfhd-2007/evi_b_hfhd_2007_satfix_nu.log'
+;
+;input files (datafile) are usually the outputs from baseline fix
+datafile=[ $
+'/projectnb/echidna/lidar/EVI_Processing/HF2007/hfhd-2007/hfhd-2007-cp/Scan21_HarvFor_Plot01CP_ND015_cube_nu_basefix.img',$
+'/projectnb/echidna/lidar/EVI_Processing/HF2007/hfhd-2007/hfhd-2007-ne/Scan19_HarvFor_Plot01NE_ND015_cube_nu_basefix.img',$
+'/projectnb/echidna/lidar/EVI_Processing/HF2007/hfhd-2007/hfhd-2007-nw/Scan15_HarvFor_Plot01NW_ND015_cube_nu_basefix.img',$
+'/projectnb/echidna/lidar/EVI_Processing/HF2007/hfhd-2007/hfhd-2007-se/Scan75_Harvard_Plot01SE_ND015_cube_nu_basefix.img',$
+'/projectnb/echidna/lidar/EVI_Processing/HF2007/hfhd-2007/hfhd-2007-sw/Scan17_HarvFor_Plot01SW_ND015_cube_nu_basefix.img'$
+]
+;
+ancfile=[ $
+'/projectnb/echidna/lidar/EVI_Processing/HF2007/hfhd-2007/hfhd-2007-cp/Scan21_HarvFor_Plot01CP_ND015_cube_nu_basefix_ancillary.img',$
+'/projectnb/echidna/lidar/EVI_Processing/HF2007/hfhd-2007/hfhd-2007-ne/Scan19_HarvFor_Plot01NE_ND015_cube_nu_basefix_ancillary.img',$
+'/projectnb/echidna/lidar/EVI_Processing/HF2007/hfhd-2007/hfhd-2007-nw/Scan15_HarvFor_Plot01NW_ND015_cube_nu_basefix_ancillary.img',$
+'/projectnb/echidna/lidar/EVI_Processing/HF2007/hfhd-2007/hfhd-2007-se/Scan75_Harvard_Plot01SE_ND015_cube_nu_basefix_ancillary.img',$
+'/projectnb/echidna/lidar/EVI_Processing/HF2007/hfhd-2007/hfhd-2007-sw/Scan17_HarvFor_Plot01SW_ND015_cube_nu_basefix_ancillary.img'$
+]
+;
+outfile=[ $
+'/projectnb/echidna/lidar/EVI_Processing/HF2007/hfhd-2007/hfhd-2007-cp/Scan21_HarvFor_Plot01CP_ND015_cube_nu_basefix_nu_satfix.img',$
+'/projectnb/echidna/lidar/EVI_Processing/HF2007/hfhd-2007/hfhd-2007-ne/Scan19_HarvFor_Plot01NE_ND015_cube_nu_basefix_nu_satfix.img',$
+'/projectnb/echidna/lidar/EVI_Processing/HF2007/hfhd-2007/hfhd-2007-nw/Scan15_HarvFor_Plot01NW_ND015_cube_nu_basefix_nu_satfix.img',$
+'/projectnb/echidna/lidar/EVI_Processing/HF2007/hfhd-2007/hfhd-2007-se/Scan75_Harvard_Plot01SE_ND015_cube_nu_basefix_nu_satfix.img',$
+'/projectnb/echidna/lidar/EVI_Processing/HF2007/hfhd-2007/hfhd-2007-sw/Scan17_HarvFor_Plot01SW_ND015_cube_nu_basefix_nu_satfix.img'$
+]
+;
+Exit_IDL=0
+delete_input=0

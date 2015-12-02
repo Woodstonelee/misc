@@ -155,7 +155,7 @@ xlabel('range, meter');
 ylabel('K(r)');
 legend('1064 nm', '1548 nm', 'Location', 'southeast');
 legend('boxoff');
-export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_kr_mean_norm_data.png'), '-r300', '-png', '-painters');
+export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_kr_mean_norm_data.png'), '-r500', '-png', '-painters');
 % plot the first derivative of K(r)
 figure();
 plot(x(1:end-1), diff(kr1064), '-b');
@@ -279,7 +279,7 @@ bar(meanrg(sortind), F_ratio_app(sortind)./F_ratio_true(sortind) - 1);
 title('modeled F-ratio / true F-ratio - 1')
 xlabel('range')
 ylabel('Relative error of modeled F-ratio compared to the true')
-export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_f_ratio.png'), '-r300', '-png', '-painters')
+export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_f_ratio.png'), '-r500', '-png', '-painters')
 
 % Range dependence of NDI and SR of calibration fitting data
 % all DN values here are normalized by panel reflectance. Thus the de-facto panel reflectance is one. And the de-facto NDI will be zero and the de-facto SR will be one. 
@@ -305,14 +305,14 @@ bar(meanrg(sortind), NDI_app(sortind));
 title('Error in NDI by $$\rho_{app}$$', 'interpreter', 'Latex')
 xlabel('range');
 ylabel('NDI error');
-export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_ndi_error.png'), '-r300', '-png', '-painters')
+export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_ndi_error.png'), '-r500', '-png', '-painters')
 
 figure('Position', [0, 0, 3.2, 2.6])
 bar(meanrg(sortind), NDI_app(sortind));
 title('Error in NDI by $$\rho_{app}$$', 'interpreter', 'Latex')
 xlabel('range');
 ylabel('NDI error');
-export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_ndi_error_vs_range.png'), '-r300', '-png', '-painters')
+export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_ndi_error_vs_range.png'), '-r500', '-png', '-painters')
 
 figure('Position', [0, 0, 7, 9])
 subplot(311)
@@ -330,7 +330,7 @@ bar(meanrg(sortind), SR_app(sortind)-1)
 title('Error in SR by $$\rho_{app}$$', 'interpreter', 'Latex')
 xlabel('range');
 ylabel('SR error');
-export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_sr_error.png'), '-r300', '-png', '-painters')
+export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_sr_error.png'), '-r500', '-png', '-painters')
 % --------------------------- end of F-ratio exploration -----------------------
 
 
@@ -470,14 +470,14 @@ figure('Position', [0, 0, 3.2, 2.6]);
 plot(tmpmeanrg, ndi, '.', 'MarkerSize', 4);
 xlabel('range');
 ylabel('NDI error');
-export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_datasample_ndierr_vs_range.png'), '-r300', '-png', '-painters');
+export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_datasample_ndierr_vs_range.png'), '-r500', '-png', '-painters');
 % plot hist of NDI error
 figure('Position', [0, 0, 3.2, 2.6]);
 [freq, x] = hist(ndi, min(ndi):0.01:max(ndi));
 barh(x, freq./sum(freq));
 xlabel('probability');
 ylabel('NDI error');
-export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_datasample_ndierr_hist.png'), '-r300', '-png', '-painters');
+export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_datasample_ndierr_hist.png'), '-r500', '-png', '-painters');
 
 % plots of mean data, 1064
 xrange = [0, 60];
@@ -491,7 +491,7 @@ errorbarxy(normdata1064(:,1), normdata1064(:,3), normdata1064(:,2), normdata1064
 xlim(xrange);
 legend('boxoff');
 title('1064');
-export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1064_average_data.png'), '-r300', '-png', '-painters');
+export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1064_average_data.png'), '-r500', '-png', '-painters');
 % plot scatter plot of modeled return intensity.
 p = polyfit(meandata1064(:,3), model1064, 1);
 figure('Position', [0, 0, 3.2, 2.6]);
@@ -506,7 +506,7 @@ ylabel(['modeled intensity', char(10), 'normalized by reflectance, DN'], 'interp
 legend(['data points'], 'y=x line', [sprintf('slope=%.2f', p(1)), char(10), sprintf('intcp=%.2f', p(2))], 'Location', 'southeast');
 title('1064');
 legend('boxoff');
-export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1064_average_data_scatter_plot.png'), '-r300', ...
+export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1064_average_data_scatter_plot.png'), '-r500', ...
            '-png', '-painters');
 % plot apparent reflectance errors
 kr = gm_func(meandata1064(:,1), calpar1064(2), calpar1064(3), calpar1064(4));
@@ -521,7 +521,7 @@ ylabel('error in $$\rho_{app}$$', 'interpreter', 'Latex');
 %legend('model - data', 'Location', 'southeast');
 %legend('boxoff');
 title('1064');
-export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1064_average_data_apprefl_error.png'), '-r300', '-png', '-painters');
+export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1064_average_data_apprefl_error.png'), '-r800', '-png', '-painters');
 fprintf('1064, error in reflectance from mean norm data, %.3f\n', sqrt(mean((meandata1064(:,2)-apprefl).^2)));
 % stats of app. refl. error
 % min, max, mean, std, cv
@@ -542,7 +542,7 @@ figure('Position', [0, 0, 3.2, 2.6]);
 [figh, model1064] = dwel_gm_plot(datasample1064, calpar1064, 'MarkerSize', 4);
 legend('boxoff');
 title('1064');
-export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1064_datasample.png'), '-r300', '-png', '-painters');
+export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1064_datasample.png'), '-r500', '-png', '-painters');
 % plot scatter plot of modeled return intensity.
 p = polyfit(datasample1064(:,3), model1064, 1);
 r2 = rsquare(datasample1064(:, 3), model1064);
@@ -557,7 +557,7 @@ ylabel('modeled intensity, DN' );
 legend(['data points'], 'y=x line', [sprintf('slope=%.2f', p(1)), char(10), sprintf('intcp=%.2f', p(2))], 'Location', 'southeast' );
 title('1064' );
 legend('boxoff');
-export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1064_data_sample_scatter_plot.png'), '-r300', ...
+export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1064_data_sample_scatter_plot.png'), '-r500', ...
            '-png', '-painters');
 % apparent reflectance
 kr = gm_func(datasample1064(:,1), calpar1064(2), calpar1064(3), calpar1064(4));
@@ -579,7 +579,7 @@ plot(datasample1064(:, 1), apprefl, '.', 'MarkerSize', 4);
 xlabel('range, meter' );
 ylabel('$$\rho_{app}$$', 'interpreter', 'Latex');
 title('1064' );
-export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1064_data_sample_apprefl_range.png'), '-r300', '-png', '-painters');
+export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1064_data_sample_apprefl_range.png'), '-r500', '-png', '-painters');
 % % plot histogram of apparent reflectance errors and error v.s. range together
 % figure();
 % subplot(2, 1, 1);
@@ -599,10 +599,10 @@ export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1064_data_sample_app
 % legend('boxoff');
 % title('1064');
 % legend('boxoff');
-% export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1064_data_sample_apprefl_error.png'), '-r300', '-png', '-painters');
+% export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1064_data_sample_apprefl_error.png'), '-r500', '-png', '-painters');
 % % plot errors in apparent reflectance against range, expect no trend
 % figure();
-% export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1064_data_sample_apprefl_error_range.png'), '-r300', '-png', '-painters');
+% export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1064_data_sample_apprefl_error_range.png'), '-r500', '-png', '-painters');
 figure('Position', [0, 0, 2.17, 1.73]);
 %subplot(1, 2, 1);
 plot(datasample1064(:, 1), apprefl-datasample1064(:,2), '.', 'MarkerSize', 4);
@@ -613,7 +613,7 @@ ylim([-0.4, 0.4]);
 title('1064' );
 %legend('model - data');
 legend('boxoff');
-export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1064_data_sample_apprefl_error_range.png'), '-r300', '-png', '-painters');
+export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1064_data_sample_apprefl_error_range.png'), '-r800', '-png', '-painters');
 figure('Position', [0, 0, 2.17, 1.73]);
 %subplot(1,2,2);
 [freq, x] = hist((apprefl-datasample1064(:,2)), -0.35:0.01:0.35);
@@ -624,7 +624,7 @@ xlabel('probability' );
 legend('boxoff');
 title('1064');
 legend('boxoff');
-export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1064_data_sample_apprefl_error_hist.png'), '-r300', '-png', '-painters');
+export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1064_data_sample_apprefl_error_hist.png'), '-r800', '-png', '-painters');
 % get stats of app. refl. error
 tmpx = datasample1064(:, 1);
 tmpy = apprefl-datasample1064(:,2);
@@ -662,7 +662,7 @@ errorbarxy(normdata1548(:,1), normdata1548(:,3), normdata1548(:,2), normdata1548
 xlim(xrange);
 legend('boxoff');
 title('1548');
-export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1548_average_data.png'), '-r300', '-png', '-painters');
+export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1548_average_data.png'), '-r500', '-png', '-painters');
 % plot scatter plot of modeled return intensity.
 p = polyfit(meandata1548(:,3), model1548, 1);
 figure('Position', [0, 0, 3.2, 2.6]);
@@ -677,7 +677,7 @@ ylabel(['modeled intensity', char(10), 'normalized by reflectance, DN'] );
 legend(['data points'], 'y=x line', [sprintf('slope=%.2f', p(1)), char(10), sprintf('intcp=%.2f', p(2))], 'Location', 'southeast' );
 title('1548' );
 legend('boxoff');
-export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1548_average_data_scatter_plot.png'), '-r300', ...
+export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1548_average_data_scatter_plot.png'), '-r500', ...
            '-png', '-painters');
 % plot apparent reflectance errors
 kr = gm_func(meandata1548(:,1), calpar1548(2), calpar1548(3), calpar1548(4));
@@ -692,7 +692,7 @@ ylabel('error in $$\rho_{app}$$', 'interpreter', 'Latex' );
 %legend('model - data', 'Location', 'southeast');
 %legend('boxoff');
 title('1548' );
-export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1548_average_data_apprefl_error.png'), '-r300', '-png', '-painters');
+export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1548_average_data_apprefl_error.png'), '-r800', '-png', '-painters');
 fprintf('1548, error in reflectance from mean norm data, %.3f\n', sqrt(mean((meandata1548(:,2)-apprefl).^2)));
 % stats of app. refl. error
 % min, max, mean, std, cv
@@ -714,7 +714,7 @@ figure('Position', [0, 0, 3.2, 2.6]);
 [figh, model1548] = dwel_gm_plot(datasample1548, calpar1548, 'MarkerSize', 4);
 legend('boxoff');
 title('1548');
-export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1548_datasample.png'), '-r300', '-png', '-painters');
+export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1548_datasample.png'), '-r500', '-png', '-painters');
 % plot scatter plot of modeled return intensity.
 p = polyfit(datasample1548(:,3), model1548, 1);
 r2 = rsquare(datasample1548(:, 3), model1548);
@@ -729,7 +729,7 @@ ylabel('modeled intensity, DN' );
 legend(['data points'], 'y=x line', [sprintf('slope=%.2f', p(1)), char(10), sprintf('intcp=%.2f', p(2))], 'Location', 'southeast' );
 title('1548' );
 legend('boxoff');
-export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1548_data_sample_scatter_plot.png'), '-r300', ...
+export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1548_data_sample_scatter_plot.png'), '-r500', ...
            '-png', '-painters');
 % apparent reflectance
 kr = gm_func(datasample1548(:,1), calpar1548(2), calpar1548(3), calpar1548(4));
@@ -751,7 +751,7 @@ plot(datasample1548(:, 1), apprefl, '.', 'MarkerSize', 4);
 xlabel('range, meter' );
 ylabel('$$\rho_{app}$$', 'interpreter', 'Latex' );
 title('1548' );
-export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1548_data_sample_apprefl_range.png'), '-r300', '-png', '-painters');
+export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1548_data_sample_apprefl_range.png'), '-r500', '-png', '-painters');
 % % plot histogram of apparent reflectance errors and error v.s. range together
 % figure();
 % subplot(2, 1, 1);
@@ -771,10 +771,10 @@ export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1548_data_sample_app
 % legend('boxoff');
 % title('1548');
 % legend('boxoff');
-% export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1548_data_sample_apprefl_error.png'), '-r300', '-png', '-painters');
+% export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1548_data_sample_apprefl_error.png'), '-r500', '-png', '-painters');
 % % plot errors in apparent reflectance against range, expect no trend
 % figure();
-% export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1548_data_sample_apprefl_error_range.png'), '-r300', '-png', '-painters');
+% export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1548_data_sample_apprefl_error_range.png'), '-r500', '-png', '-painters');
 figure('Position', [0, 0, 2.17, 1.73]);
 %subplot(1, 2, 1);
 plot(datasample1548(:, 1), apprefl-datasample1548(:,2), '.', 'MarkerSize', 4);
@@ -785,7 +785,7 @@ ylim([-0.4, 0.4]);
 title('1548' );
 %legend('model - data');
 legend('boxoff');
-export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1548_data_sample_apprefl_error_range.png'), '-r300', '-png', '-painters');
+export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1548_data_sample_apprefl_error_range.png'), '-r800', '-png', '-painters');
 figure('Position', [0, 0, 2.17, 1.73]);
 %subplot(1,2,2);
 [freq, x] = hist((apprefl-datasample1548(:,2)), -0.35:0.01:0.35);
@@ -796,7 +796,7 @@ xlabel('probability');
 legend('boxoff');
 title('1548');
 legend('boxoff');
-export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1548_data_sample_apprefl_error_hist.png'), '-r300', '-png', '-painters');
+export_fig(fullfile(outdir, 'cal_dwel_simul_appndi_20140812_1548_data_sample_apprefl_error_hist.png'), '-r800', '-png', '-painters');
 
 % get stats of app. refl. error
 tmpx = datasample1548(:, 1);
