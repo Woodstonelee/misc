@@ -12,3 +12,5 @@ import pdb; pdb.set_trace()
 data = canupo.FloatVec()
 # canupo.read_msc_data(mscfile, len(scales), npts, data, nparams, True)
 canupo.read_msc_data(mscfile, len(scales), npts, data, nparams)
+
+# test gitignore

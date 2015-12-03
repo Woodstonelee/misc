@@ -16,6 +16,6 @@ temp*
 *.tiff
 
 # files created by compilation and build
-**/build/
-**/debug/
-**/release/
+build/
+debug/
+release/
