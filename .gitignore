@@ -16,6 +16,18 @@ temp*
 *.tiff
 
 # files created by compilation and build
-build/
-debug/
-release/
+**/build
+**/debug
+**/release
+
+# ignore any IPython notbook checkpoint
+**/.ipynb_checkpoints
+
+# ignore any possilbe input data folders
+**/data*
+
+# ignore any output figures
+**/figure*
+
+# ignore any output data folders
+**/result*
