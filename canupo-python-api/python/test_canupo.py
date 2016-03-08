@@ -1,6 +1,6 @@
 import canupo
 
-mscfile = canupo.MSCFile("/media/sf_Windows-Workspace/data/dwel-processing/hfhd20140919/dual-wl-points/HFHD_20140919_C_dual_cube_bsfix_pxc_update_atp2_ptcl_points_az10.msc")
+mscfile = canupo.MSCFile("/projectnb/echidna/lidar/DWEL_Processing/HF2015/HFHD20150919/spectral-points-by-union/hfhd20150919-dual-points-classification/HFHD_20150919_all_dual_cube_bsfix_pxc_update_atp2_ptcl_points_25mm_subsampling.msc")
 
 # scales = canupo.FloatVec()
 # scales[:] = []
@@ -12,3 +12,5 @@ import pdb; pdb.set_trace()
 data = canupo.FloatVec()
 # canupo.read_msc_data(mscfile, len(scales), npts, data, nparams, True)
 canupo.read_msc_data(mscfile, len(scales), npts, data, nparams)
+
+# test gitignore
