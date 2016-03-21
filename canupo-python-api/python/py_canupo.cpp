@@ -5,15 +5,7 @@ Boost.Python.
 Zhan Li <zhanli1986@gmail.com>
  */
 
-#include <iostream>
-#include "helpers.hpp"
-#include <boost/python.hpp>
-// #include <boost/python/implicit.hpp>
-#include <boost/python/suite/indexing/vector_indexing_suite.hpp>
-// #include <boost/foreach.hpp>
-#include <boost/shared_ptr.hpp>
-
-namespace bp = boost::python;
+#include "py_canupo.hpp"
 
 // // write a class of integer that can be passed by reference
 // struct RefInt
@@ -55,87 +47,104 @@ void py_read_msc_data(MSCFile& mscfile, int nscales, int npts, std::vector<Float
   data.resize(ndata);
   read_msc_data(mscfile, nscales, npts, data.data(), nparams, convert_from_tri_to_2D);
 }
-BOOST_PYTHON_FUNCTION_OVERLOADS(py_read_msc_data_overloads, py_read_msc_data, 5, 6);
 
-struct py_MSCFile : MSCFile
+py_MSCFile::py_MSCFile(const char* name)
+  : MSCFile(name)
 {
-private:
-  int ptnparams, npts; 
-  std::vector<FloatType> scales;
-  int nscales;
-  int read_header(std::vector<FloatType>& scales, int& ptnparams);
-  int pt=0;
-  std::vector<FloatType> param;
-  std::vector<FloatType> data;
-  int fooi;
+  npts = read_header(scales, ptnparams);
+  nscales = scales.size();
+  param.resize(ptnparams);
+  data.resize(nscales*2);
 
-public:  
-  py_MSCFile(const char* name)
-    : MSCFile(name)
+  // try reading one point and find out the length of a point in the msc file.
+  // read all attributes of one point in msc file
+  for (int i=0; i<ptnparams; ++i)
   {
-    npts = read_header(scales, ptnparams);
-    nscales = scales.size();
-    param.resize(ptnparams);
-    data.resize(nscales*2);
+      read(param[i]);
+  }
+  for (int s=0; s<nscales; ++s)
+  {
+      read(data[s*2]);
+      read(data[s*2+1]);
+  }
+  // we do not care for number of neighbors and average dist between nearest neighbors
+  for (int i=0; i<nscales; ++i) read(fooi);
+
+  bp::list py_param, py_data1, py_data2;
+  for(std::size_t i=0; i<param.size(); i++)
+  {
+    py_param.append(param[i]);
+  }
+  for(std::size_t i=0; i<nscales; i++)
+  {
+    py_data1.append(data[i*2]);
+    py_data2.append(data[i*2+1]);
   }
 
-  bp::tuple py_get_header()
+  this->point_data_len = this->offset - this->data_start_pos;
+  this->seekg(this->data_start_pos);
+}
+
+bp::tuple py_MSCFile::py_get_header()
+{
+  bp::list py_scales;
+  for(std::size_t i=0; i<scales.size(); i++)
   {
-    bp::list py_scales;
-    for(std::size_t i=0; i<scales.size(); i++)
-    {
-      py_scales.append(scales[i]);
-    }
-    // std::for_each(scales.begin(), scales.end(), py_scales.append);
-    return bp::make_tuple(npts, py_scales, ptnparams);
+    py_scales.append(scales[i]);
   }
+  // std::for_each(scales.begin(), scales.end(), py_scales.append);
+  return bp::make_tuple(npts, py_scales, ptnparams);
+}
+
+bp::tuple py_MSCFile::py_read_point(size_t pt_idx=std::numeric_limits<size_t>::max(), bool convert_from_tri_to_2D = false)
+{
+  if (pt_idx == std::numeric_limits<size_t>::max())
+  {
+    pt_idx = this->next_pt_idx;
+  }
+  if (pt_idx >= npts)
+  {
+    std::cerr << "The given index of a point "<< pt_idx << " is out of boundary! Number of points = " << npts << std::endl;
+    return bp::make_tuple(bp::object());
+  }
+
+  this->seekg(this->data_start_pos+this->point_data_len*pt_idx);
   
-  bp::tuple py_read_next_point(bool convert_from_tri_to_2D = false)
+  // read all attributes of one point in msc file
+  for (int i=0; i<ptnparams; ++i)
   {
-    if (pt >= npts)
-    {
-      std::cerr << "all "<< npts << " points have been read out!" << std::endl;
-      return bp::make_tuple(bp::object());
-    }
-    // read all attributes of one point in msc file
-    for (int i=0; i<ptnparams; ++i)
-    {
-        read(param[i]);
-    }
-    for (int s=0; s<nscales; ++s)
-    {
-        read(data[s*2]);
-        read(data[s*2+1]);
-        if (convert_from_tri_to_2D)
-        {
-            FloatType c = 1 - data[s*2] - data[s*2+1];
-            FloatType x = data[s*2+1] + c / 2;
-            FloatType y = c * sqrt(3)/2;
-            data[s*2] = x;
-            data[s*2+1] = y;
-        }
-    }
-    // we do not care for number of neighbors and average dist between nearest neighbors
-    for (int i=0; i<nscales; ++i) read(fooi);
-
-    bp::list py_param, py_data1, py_data2;
-    for(std::size_t i=0; i<param.size(); i++)
-    {
-      py_param.append(param[i]);
-    }
-    for(std::size_t i=0; i<nscales; i++)
-    {
-      py_data1.append(data[i*2]);
-      py_data2.append(data[i*2+1]);
-    }
-
-    pt++;
-    return bp::make_tuple(py_param, py_data1, py_data2);
+      read(param[i]);
   }
-  
-};
+  for (int s=0; s<nscales; ++s)
+  {
+      read(data[s*2]);
+      read(data[s*2+1]);
+      if (convert_from_tri_to_2D)
+      {
+          FloatType c = 1 - data[s*2] - data[s*2+1];
+          FloatType x = data[s*2+1] + c / 2;
+          FloatType y = c * sqrt(3)/2;
+          data[s*2] = x;
+          data[s*2+1] = y;
+      }
+  }
+  // we do not care for number of neighbors and average dist between nearest neighbors
+  for (int i=0; i<nscales; ++i) read(fooi);
 
-BOOST_PYTHON_MEMBER_FUNCTION_OVERLOADS(py_MSCFile_py_read_next_point_overloads, py_read_next_point, 0, 1)
+  bp::list py_param, py_data1, py_data2;
+  for(std::size_t i=0; i<param.size(); i++)
+  {
+    py_param.append(param[i]);
+  }
+  for(std::size_t i=0; i<nscales; i++)
+  {
+    py_data1.append(data[i*2]);
+    py_data2.append(data[i*2+1]);
+  }
+
+  this->next_pt_idx = pt_idx + 1;
+  return bp::make_tuple(py_param, py_data1, py_data2);
+}
 
 int py_MSCFile::read_header(std::vector<FloatType>& scales, int& ptnparams)
 {
@@ -176,6 +185,8 @@ int py_MSCFile::read_header(std::vector<FloatType>& scales, int& ptnparams)
     
     read(ptnparams);
 
+    data_start_pos = offset;
+
     return npts;
 }
 
@@ -194,7 +205,8 @@ BOOST_PYTHON_MODULE(canupo)
   
   class_<py_MSCFile>("MSCFile", init<const char*>())
     .def("get_header", &py_MSCFile::py_get_header)
-    .def("read_next_point", &py_MSCFile::py_read_next_point, py_MSCFile_py_read_next_point_overloads())
+    .def("read_point", &py_MSCFile::py_read_point, py_MSCFile_py_read_point_overloads())
+    .def_readonly("next_pt_idx", &py_MSCFile::next_pt_idx)
     ;
 
   def("read_msc_header", py_read_msc_header);

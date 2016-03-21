@@ -56,13 +56,28 @@ bool fpeq(FloatType a, FloatType b) {
 #ifdef NO_MMAP
 struct MSCFile {
     std::ifstream realfile;
+    size_t offset;
     MSCFile(const char* name) {
         realfile.open(name, std::ifstream::binary);
     }
     ~MSCFile() {realfile.close();}
     template<typename T> void read(T& value) {
         realfile.read((char*)&value, sizeof(T));
+        offset = realfile.tellg();
     }
+
+    void seekg(size_t pos)
+    {
+      realfile.seekg(pos, realfile.beg);
+      offset = realfile.tellg();
+    }
+
+    // template<typename T> void read(T& value, size_t pos)
+    // {
+    //   realfile.seekg(pos, realfile.beg);
+    //   realfile.read((char*)&value, sizeof(T));
+    //   offset = realfile.tellg();
+    // }
 };
 #else
 struct MSCFile {
@@ -90,6 +105,17 @@ struct MSCFile {
         value = *reinterpret_cast<T*>(&memzone[offset]);
         offset += sizeof(T);
     }
+
+    void seekg(size_t pos)
+    {
+      offset = (off_t)pos;
+    }
+
+    // template<typename T> void read(T& value, size_t pos)
+    // {
+    //   value = *reinterpret_cast<T*>(&memzone[(off_t)pos]);
+    //   offset = (off_t)pos + sizeof(T);
+    // }
 };
 #endif
 
